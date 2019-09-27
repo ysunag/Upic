@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="upicServer:war exploded">
+    <output-path>$PROJECT_DIR$/target/upic-server</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="upicServer" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.6.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.6.1" />
+          <element id="library" level="project" name="Maven: org.json:json:20180813" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/upic-server/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="upicServer/web/Web" />
+    </root>
+  </artifact>
+</component>
