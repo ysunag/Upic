@@ -11,15 +11,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import io.swagger.client.ApiClient;
 import io.swagger.client.ApiException;
-import io.swagger.client.api.ResortsApi;
 import io.swagger.client.api.SkiersApi;
 import io.swagger.client.measurement.Metrics;
 import io.swagger.client.model.LiftRide;
-import io.swagger.client.model.ResponseMsg;
-import io.swagger.client.model.SeasonsList;
 
 public class Runner implements Runnable {
-  private String serverAddress;
   private int[] timeRange;
   private int[] skierRange;
   private CountDownLatch phaseLatch;
@@ -32,7 +28,6 @@ public class Runner implements Runnable {
 
   public Runner(String serverAddress, int[] timeRange, int[] skierRange, CountDownLatch phaseLatch,
                 CountDownLatch totalLatch, int numOfRuns, int numOfSkiLifts, Metrics metrics) {
-    this.serverAddress = serverAddress;
     this.timeRange = timeRange;
     this.skierRange = skierRange;
     this.phaseLatch = phaseLatch;
@@ -40,8 +35,7 @@ public class Runner implements Runnable {
     this.numOfRuns = numOfRuns;
     this.numOfSkiLifts = numOfSkiLifts;
     this.metrics = metrics;
-
-    SkiersApi apiInstance = new SkiersApi();
+    apiInstance = new SkiersApi();
     ApiClient client = apiInstance.getApiClient();
     client.setBasePath(serverAddress);
   }
@@ -80,10 +74,9 @@ public class Runner implements Runnable {
 
   private void makePostRequest(int skierId, int time, int liftId) throws Exception{
     long startTime = System.currentTimeMillis();
-     //TODO: which api to call?
-    int resortID = 0;
-    String seasonID = "0";
-    String dayID = "0";
+    int resortID = 10;
+    String seasonID = "2019";
+    String dayID = "20";
     LiftRide body = new LiftRide();
     body.setLiftID(liftId);
     body.setTime(time);
@@ -91,14 +84,10 @@ public class Runner implements Runnable {
     String responseCode = "";
     try {
       apiInstance.writeNewLiftRide(body, resortID, seasonID, dayID, skierId);
-//      if(response.getStatus() == 201) metrics.successfulRequest.getAndIncrement();
-//    //System.out.println("Post " + response.getStatus());
-//    if (response.getStatus() != 201) {
-//      metrics.successfulRequest.getAndIncrement();
-//      logger.error(null, "This is the log message", throwable);
-//    }
+      metrics.getSuccessfulRequest().getAndIncrement();
     } catch (ApiException e) {
-      System.err.println("Exception when calling SkierAPI#writeNewLiftRide");
+      metrics.getUnsuccessfulRequest().getAndIncrement();
+      System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
       e.printStackTrace();
     }
 
@@ -119,6 +108,7 @@ public class Runner implements Runnable {
 //    metrics.graph.put(duration, metrics.graph.get(duration) + 1);
     long latency = endTime - startTime;
     metrics.getLatency().add(latency);
+    //todo write csv
     try (ICsvListWriter listWriter = new CsvListWriter(new FileWriter("/Users/yang/Documents/NEU/CS6650/java-client-generated/data.csv"),
             CsvPreference.STANDARD_PREFERENCE)){
        listWriter.write(startTime, responseType, latency, responseCode);
