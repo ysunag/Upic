@@ -1,10 +1,5 @@
 package io.swagger.client.runner;
 
-import org.supercsv.io.CsvListWriter;
-import org.supercsv.io.ICsvListWriter;
-import org.supercsv.prefs.CsvPreference;
-
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadLocalRandom;
@@ -20,19 +15,19 @@ public class Runner implements Runnable {
   private int[] skierRange;
   private CountDownLatch phaseLatch;
   private CountDownLatch totalLatch;
-  private int numOfRuns;
+  private int numOfRequests;
   private int numOfSkiLifts;
   private Metrics metrics;
   private SkiersApi apiInstance;
 
 
   public Runner(String serverAddress, int[] timeRange, int[] skierRange, CountDownLatch phaseLatch,
-                CountDownLatch totalLatch, int numOfRuns, int numOfSkiLifts, Metrics metrics) {
+                CountDownLatch totalLatch, int numOfRequests, int numOfSkiLifts, Metrics metrics) {
     this.timeRange = timeRange;
     this.skierRange = skierRange;
     this.phaseLatch = phaseLatch;
     this.totalLatch = totalLatch;
-    this.numOfRuns = numOfRuns;
+    this.numOfRequests = numOfRequests;
     this.numOfSkiLifts = numOfSkiLifts;
     this.metrics = metrics;
     apiInstance = new SkiersApi();
@@ -41,18 +36,23 @@ public class Runner implements Runnable {
   }
 
   public void run() {
-    for (int i = 0; i < numOfRuns; i++) {
+    StringBuilder sb = new StringBuilder();
+    System.out.println("Time starts " + timeRange[0] + ", number of requests is" + numOfRequests);
+    for (int i = 0; i < numOfRequests; i++) {
       int skierId = ThreadLocalRandom.current().nextInt(skierRange[1] - skierRange[0] + 1) + skierRange[0];
       int time = ThreadLocalRandom.current().nextInt(timeRange[1] - timeRange[0] + 1) + timeRange[0];
       int liftId = ThreadLocalRandom.current().nextInt(numOfSkiLifts) + 1;
       try {
-        makePostRequest(skierId, time, liftId);
+        makePostRequest(skierId, time, liftId, sb);
       }
       catch(Exception e) {
         System.err.println("Exception when making single post request");
         e.printStackTrace();
       }
+
     }
+    metrics.getRecord().add(sb.toString());
+    //System.out.println("added record " + metrics.getRecord().size() + " : " + sb.toString());
     phaseLatch.countDown();
     totalLatch.countDown();
     long currentPhaseCount = phaseLatch.getCount();
@@ -60,19 +60,9 @@ public class Runner implements Runnable {
     System.out.println("currentPhaseCount: " + currentPhaseCount);
     System.out.println("currentTotalCount: " + currentTotalCount);
 
-
-
-
-//    try {
-//      SeasonsList result = apiInstance.getResortSeasons(resortID);
-//      System.out.println(result);
-//    } catch (ApiException e) {
-//      System.err.println("Exception when calling ResortsApi#getResortSeasons");
-//      e.printStackTrace();
-//    }
   }
 
-  private void makePostRequest(int skierId, int time, int liftId) throws Exception{
+  private void makePostRequest(int skierId, int time, int liftId, StringBuilder sb) throws Exception{
     long startTime = System.currentTimeMillis();
     int resortID = 10;
     String seasonID = "2019";
@@ -81,41 +71,37 @@ public class Runner implements Runnable {
     body.setLiftID(liftId);
     body.setTime(time);
 
-    String responseCode = "";
+    int responseCode;
     try {
       apiInstance.writeNewLiftRide(body, resortID, seasonID, dayID, skierId);
       metrics.getSuccessfulRequest().getAndIncrement();
+      responseCode = 201;
     } catch (ApiException e) {
       metrics.getUnsuccessfulRequest().getAndIncrement();
+      responseCode = e.getCode();
       System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
       e.printStackTrace();
     }
 
     long endTime = System.currentTimeMillis();
     try {
-      addSingleRequestMetrics(startTime, endTime, responseCode, "POST");
+      addSingleRequestMetrics(startTime, endTime, responseCode, "POST", sb);
     } catch (IOException e) {
-      System.err.println("Exception when writing single request record to csv");
+      System.err.println("Exception when writing single request record");
       e.printStackTrace();
     }
 
   }
 
-  public void addSingleRequestMetrics(long startTime, long endTime, String responseCode,
-                                      String responseType) throws IOException{
-//    int duration = (int)((endTime - metrics.globalStartTime) / 1000);
-//    metrics.graph.putIfAbsent(duration, 1);
-//    metrics.graph.put(duration, metrics.graph.get(duration) + 1);
+  public void addSingleRequestMetrics(long startTime, long endTime, int responseCode,
+                                      String responseType, StringBuilder sb) throws IOException{
+
     long latency = endTime - startTime;
+    //System.out.println("latency: " + latency);
     metrics.getLatency().add(latency);
-    //todo write csv
-    try (ICsvListWriter listWriter = new CsvListWriter(new FileWriter("/Users/yang/Documents/NEU/CS6650/java-client-generated/data.csv"),
-            CsvPreference.STANDARD_PREFERENCE)){
-       listWriter.write(startTime, responseType, latency, responseCode);
-      } catch (IOException e) {
-      System.err.println("Exception when writing single request record to csv");
-      e.printStackTrace();
-    }
+    String singleRecord = startTime + "," + responseType + "," + latency + "," + responseCode + "\n";
+    //System.out.println("single record: " + singleRecord);
+    sb.append(singleRecord);
   }
 
 }

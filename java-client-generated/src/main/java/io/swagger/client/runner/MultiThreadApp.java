@@ -1,5 +1,7 @@
 package io.swagger.client.runner;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -49,6 +51,7 @@ public class MultiThreadApp {
     try {
       app.startService();
       app.measureLatency();
+      app.writeCSV();
     }  catch (InterruptedException e) {
       System.err.println("Exception when starting service");
       e.printStackTrace();
@@ -106,7 +109,8 @@ public class MultiThreadApp {
     int[] skierRange = new int[]{1, numOfSkiers};
     for(int i = 0; i < numOfThread; i++) {
       System.out.println("skier start" + skierRange[0] + "skier end" + skierRange[1]);
-      executor.submit(new Runner(serverAddress, timeRange, skierRange, phaseLatch, totalLatch, numOfRuns, numOfSkiLifts, metrics));
+      executor.submit(new Runner(serverAddress, timeRange, skierRange, phaseLatch, totalLatch,
+              numOfRuns * numOfMaxSkiers / numOfThread, numOfSkiLifts, metrics));
       skierRange[0] = skierRange[0] + numOfSkiers;
       skierRange[1] = skierRange[1] + numOfSkiers;
     }
@@ -128,6 +132,13 @@ public class MultiThreadApp {
   }
 
   public void printResult(){
+    System.out.println("=================================================");
+    System.out.println("Number of threads = " + numOfMaxThread);
+    System.out.println("Number of skiers = " + numOfMaxSkiers);
+    System.out.println("Number of lifts = " + numOfSkiLifts);
+    System.out.println("Number of runs = " + numOfMeanLifts);
+    System.out.println("=================================================");
+    System.out.println("Result: ");
     System.out.println("Number of successful requests sent: " + metrics.getSuccessfulRequest());
     System.out.println("Number of unsuccessful requests sent: " + metrics.getUnsuccessfulRequest());
     System.out.println("Total run time (wall time) is : " + totalTime + "ms");
@@ -135,9 +146,21 @@ public class MultiThreadApp {
     System.out.println("Latency related measurements: ");
     System.out.println("mean response time: " + latencyResults[0] + "ms");
     System.out.println("median response time: " + latencyResults[1] + "ms");
-    System.out.println("throughput: " + latencyResults[2] + "s");
+    System.out.println("throughput: " + latencyResults[2] + "/s");
     System.out.println("p99 (99th percentile) response time: " + latencyResults[3] + "ms");
     System.out.println("max response time: " + latencyResults[4] + "ms");
+  }
+
+  public void writeCSV() {
+    String fileName = "/Users/yang/Documents/NEU/CS6650/Upic/java-client-generated/" + numOfMaxThread + "result.csv";
+    try(FileWriter writer = new FileWriter(fileName)) {
+      for(String s : metrics.getRecord()) {
+        writer.write(s);
+      }
+    } catch (IOException e) {
+      System.err.println("Exception when writing record to csv");
+      e.printStackTrace();
+    }
   }
 
 }
