@@ -1,70 +1,30 @@
 package com.upic.filter;
 
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SkierStatistics {
-  private AtomicLong maxLiftGetLatency;
-  private AtomicLong maxLiftDayGetLatency;
-  private AtomicLong maxLiftPostLatency;
-
-  private AtomicLong totalLiftGetLatency;
-  private AtomicLong totalLiftDayGetLatency;
-  private AtomicLong totalLiftPostLatency;
-
-  private AtomicInteger LiftGetNum;
-  private AtomicInteger LiftDayGetNum;
-  private AtomicInteger LiftPostNum;
+  private List<Long> liftGetRecord;
+  private List<Long> liftDayGetRecord;
+  private List<Long> liftPostRecord;
 
 
   public SkierStatistics() {
-    this.maxLiftGetLatency = new AtomicLong();
-    this.maxLiftDayGetLatency = new AtomicLong();
-    this.maxLiftPostLatency = new AtomicLong();
-
-    this.totalLiftGetLatency = new AtomicLong();
-    this.totalLiftDayGetLatency = new AtomicLong();
-    this.totalLiftPostLatency = new AtomicLong();
-
-    this.LiftGetNum = new AtomicInteger();
-    this.LiftDayGetNum = new AtomicInteger();
-    this.LiftPostNum = new AtomicInteger();
+    this.liftGetRecord = Collections.synchronizedList(new LinkedList<Long>());
+    this.liftDayGetRecord = Collections.synchronizedList(new LinkedList<Long>());
+    this.liftPostRecord = Collections.synchronizedList(new LinkedList<Long>());
   }
 
-  public AtomicLong getMaxLiftGetLatency() {
-    return maxLiftGetLatency;
+  public List<Long> getLiftGetRecord() {
+    return liftGetRecord;
   }
 
-  public AtomicLong getMaxLiftDayGetLatency() {
-    return maxLiftDayGetLatency;
+  public List<Long> getLiftDayGetRecord() {
+    return liftDayGetRecord;
   }
 
-  public AtomicLong getMaxLiftPostLatency() {
-    return maxLiftPostLatency;
-  }
-
-
-  public AtomicLong getTotalLiftGetLatency() {
-    return totalLiftGetLatency;
-  }
-
-  public AtomicLong getTotalLiftDayGetLatency() {
-    return totalLiftDayGetLatency;
-  }
-
-  public AtomicLong getTotalLiftPostLatency() {
-    return totalLiftPostLatency;
-  }
-
-  public AtomicInteger getLiftGetNum() {
-    return LiftGetNum;
-  }
-
-  public AtomicInteger getLiftDayGetNum() {
-    return LiftDayGetNum;
-  }
-
-  public AtomicInteger getLiftPostNum() {
-    return LiftPostNum;
+  public List<Long> getLiftPostRecord() {
+    return liftPostRecord;
   }
 }

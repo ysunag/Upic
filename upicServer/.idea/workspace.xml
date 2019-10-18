@@ -62,162 +62,39 @@
         <item name="upic_schema: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="season: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Mysql@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="upic_schema: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="statistics: table" type="98d5ac3d:MysqlImplModel$Table" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ResortsServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1571374913344" expanded="true" signature="2724:2829" ph="INSERT INTO seasons... " />
-                <marker date="1571374913344" expanded="true" signature="4119:4132" ph="SELECT SUM(s... users" />
-                <marker date="1571374913344" expanded="true" signature="4119:4139" ph="SELECT * FRO... resort" />
-                <marker date="1571374913344" expanded="true" signature="4119:4140" ph="SELECT * FRO... " />
-                <marker date="1571374913344" expanded="true" signature="5930:5938" ph="SELECT DISCO... " />
-                <marker date="1571374913344" expanded="true" signature="5930:6101" ph="SELECT DISTI... season" />
-                <marker date="1571374913344" expanded="true" signature="5930:6118" ph="SELECT SUM(s... users" />
-                <marker date="1571374913344" expanded="true" signature="5930:6119" ph="SELECT DISTI... season" />
-                <marker date="1571374913344" expanded="true" signature="5930:6120" ph="SELECT DISTI... season" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ResortsStatisticsFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatisticsServlet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StatisticsServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="17" column="43" lean-forward="true" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+            <state relative-caret-position="-2">
+              <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResortsStatistics.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#601#602#0" expanded="true" />
-                <element signature="e#634#635#0" expanded="true" />
-                <element signature="e#681#682#0" expanded="true" />
-                <element signature="e#714#715#0" expanded="true" />
-                <element signature="e#762#763#0" expanded="true" />
-                <element signature="e#796#797#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SkierStatistics.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="68" column="3" lean-forward="false" selection-start-line="68" selection-start-column="3" selection-end-line="68" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1033#1034#0" expanded="true" />
-                <element signature="e#1067#1068#0" expanded="true" />
-                <element signature="e#1116#1117#0" expanded="true" />
-                <element signature="e#1153#1154#0" expanded="true" />
-                <element signature="e#1200#1201#0" expanded="true" />
-                <element signature="e#1235#1236#0" expanded="true" />
-                <element signature="e#1284#1285#0" expanded="true" />
-                <element signature="e#1320#1321#0" expanded="true" />
-                <element signature="e#1371#1372#0" expanded="true" />
-                <element signature="e#1410#1411#0" expanded="true" />
-                <element signature="e#1459#1460#0" expanded="true" />
-                <element signature="e#1496#1497#0" expanded="true" />
-                <element signature="e#1538#1539#0" expanded="true" />
-                <element signature="e#1565#1566#0" expanded="true" />
-                <element signature="e#1610#1611#0" expanded="true" />
-                <element signature="e#1640#1641#0" expanded="true" />
-                <element signature="e#1683#1684#0" expanded="true" />
-                <element signature="e#1711#1712#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AtomicLong.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/concurrent/atomic/AtomicLong.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1734">
-              <caret line="145" column="25" lean-forward="false" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SkierStatisticsFilter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SkierStatisticsFilter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="182">
+              <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SkiersServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1571374913333" expanded="true" signature="4706:4872" ph="INSERT INTO lift... " />
-                <marker date="1571374913333" expanded="true" signature="4706:4888" ph="INSERT INTO lift... " />
-                <marker date="1571374913333" expanded="true" signature="4706:4898" ph="INSERT INTO lift... " />
-                <marker date="1571374913333" expanded="true" signature="4706:4901" ph="INSERT INTO lift... " />
-                <marker date="1571374913333" expanded="true" signature="7776:7962" ph="SELECT SUM(s... users" />
-                <marker date="1571374913333" expanded="true" signature="7776:7978" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="7776:7979" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="7776:8034" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="7776:8050" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="7776:8051" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="10369:10646" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="10369:10660" ph="SELECT lift_... lift" />
-                <marker date="1571374913333" expanded="true" signature="10369:10662" ph="SELECT lift_... lift" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpServletRequest.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar!/javax/servlet/http/HttpServletRequest.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -256,13 +133,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/upic/ResortsServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/ConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/Statistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java" />
       </list>
     </option>
   </component>
@@ -672,12 +549,12 @@
       <workItem from="1569446954378" duration="351000" />
       <workItem from="1569447864943" duration="3393000" />
       <workItem from="1570311960628" duration="12192000" />
-      <workItem from="1571090951210" duration="29766000" />
+      <workItem from="1571090951210" duration="34364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73138000" />
+    <option name="totallyTimeSpent" value="77736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -689,7 +566,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="520" y="0" width="920" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -703,13 +580,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19384836" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31197098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3470375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3470375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23891273" sideWeight="0.2882883" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33712983" sideWeight="0.7158404" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33712983" sideWeight="0.2841596" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10364465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21173105" sideWeight="0.712963" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21173105" sideWeight="0.28703704" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18597998" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.48108107" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -810,7 +687,6 @@
         <state relative-caret-position="153">
           <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
             <marker date="1571374913344" expanded="true" signature="2724:2829" ph="INSERT INTO seasons... " />
             <marker date="1571374913344" expanded="true" signature="4119:4132" ph="SELECT SUM(s... users" />
             <marker date="1571374913344" expanded="true" signature="4119:4139" ph="SELECT * FRO... resort" />
@@ -904,7 +780,6 @@
         <state relative-caret-position="153">
           <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
             <marker date="1571374913344" expanded="true" signature="2724:2829" ph="INSERT INTO seasons... " />
             <marker date="1571374913344" expanded="true" signature="4119:4132" ph="SELECT SUM(s... users" />
             <marker date="1571374913344" expanded="true" signature="4119:4139" ph="SELECT * FRO... resort" />
@@ -1136,29 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1571374913333" expanded="true" signature="4706:4872" ph="INSERT INTO lift... " />
-            <marker date="1571374913333" expanded="true" signature="4706:4888" ph="INSERT INTO lift... " />
-            <marker date="1571374913333" expanded="true" signature="4706:4898" ph="INSERT INTO lift... " />
-            <marker date="1571374913333" expanded="true" signature="4706:4901" ph="INSERT INTO lift... " />
-            <marker date="1571374913333" expanded="true" signature="7776:7962" ph="SELECT SUM(s... users" />
-            <marker date="1571374913333" expanded="true" signature="7776:7978" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="7776:7979" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="7776:8034" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="7776:8050" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="7776:8051" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="10369:10646" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="10369:10660" ph="SELECT lift_... lift" />
-            <marker date="1571374913333" expanded="true" signature="10369:10662" ph="SELECT lift_... lift" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1167,27 +1019,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/concurrent/atomic/AtomicLong.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="145" column="25" lean-forward="false" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
+        <state relative-caret-position="357">
           <caret line="68" column="3" lean-forward="false" selection-start-line="68" selection-start-column="3" selection-end-line="68" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1213,12 +1047,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/concurrent/atomic/AtomicLong.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="39" />
+        <state relative-caret-position="1734">
+          <caret line="145" column="25" lean-forward="false" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#587#588#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+            <element signature="e#778#779#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1571374913333" expanded="true" signature="4706:4872" ph="INSERT INTO lift... " />
+            <marker date="1571374913333" expanded="true" signature="4706:4888" ph="INSERT INTO lift... " />
+            <marker date="1571374913333" expanded="true" signature="4706:4898" ph="INSERT INTO lift... " />
+            <marker date="1571374913333" expanded="true" signature="4706:4901" ph="INSERT INTO lift... " />
+            <marker date="1571374913333" expanded="true" signature="7776:7962" ph="SELECT SUM(s... users" />
+            <marker date="1571374913333" expanded="true" signature="7776:7978" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="7776:7979" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="7776:8034" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="7776:8050" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="7776:8051" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="10369:10646" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="10369:10660" ph="SELECT lift_... lift" />
+            <marker date="1571374913333" expanded="true" signature="10369:10662" ph="SELECT lift_... lift" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+          <folding>
             <marker date="1571374913344" expanded="true" signature="2724:2829" ph="INSERT INTO seasons... " />
             <marker date="1571374913344" expanded="true" signature="4119:4132" ph="SELECT SUM(s... users" />
             <marker date="1571374913344" expanded="true" signature="4119:4139" ph="SELECT * FRO... resort" />
@@ -1232,37 +1112,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#601#602#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="43" lean-forward="true" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+        <state relative-caret-position="-2">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
