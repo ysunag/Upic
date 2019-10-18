@@ -1,4 +1,4 @@
-package com.upic;
+package com.upic.servlet;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

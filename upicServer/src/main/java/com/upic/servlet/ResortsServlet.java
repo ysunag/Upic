@@ -1,4 +1,4 @@
-package com.upic;
+package com.upic.servlet;
 
 
 import com.google.gson.JsonElement;
@@ -128,6 +128,7 @@ public class ResortsServlet extends HttpServlet {
 
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(json.toString());
+          conn.close();
 
         } catch (SQLException e) {
           e.printStackTrace();
@@ -180,6 +181,7 @@ public class ResortsServlet extends HttpServlet {
         }
         response.setStatus(HttpServletResponse.SC_OK);
         out.write("{\"message\":\"get a list of seasons for the specified resort request received\"}");
+        conn.close();
       }
     } catch (Exception e) {
       LOGGER.error(e.getMessage());

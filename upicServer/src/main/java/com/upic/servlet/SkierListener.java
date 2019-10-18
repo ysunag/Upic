@@ -1,4 +1,4 @@
-package com.upic;
+package com.upic.servlet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

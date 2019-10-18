@@ -1,4 +1,4 @@
-package com.upic;
+package com.upic.servlet;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -140,6 +140,7 @@ public class SkiersServlet extends HttpServlet {
 
         response.setStatus(HttpServletResponse.SC_CREATED);
         out.write("{\"message\":\"create lift request received\"}");
+        conn.close();
         return;
       }
     } catch (Exception e) {
@@ -229,6 +230,7 @@ public class SkiersServlet extends HttpServlet {
             responseJson.put("totalVert", totalVert);
             response.setStatus(HttpServletResponse.SC_OK);
             out.write(responseJson.toString());
+            conn.close();
 
           } catch (SQLException e) {
             e.printStackTrace();
@@ -295,6 +297,7 @@ public class SkiersServlet extends HttpServlet {
           }
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(totalDayVert);
+          conn.close();
           return;
         } catch (SQLException e) {
           e.printStackTrace();

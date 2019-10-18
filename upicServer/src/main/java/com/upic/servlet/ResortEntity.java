@@ -1,4 +1,4 @@
-package com.upic;
+package com.upic.servlet;
 
 import java.sql.Timestamp;
 
