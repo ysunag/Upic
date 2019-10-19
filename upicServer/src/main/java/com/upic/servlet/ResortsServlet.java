@@ -79,7 +79,7 @@ public class ResortsServlet extends HttpServlet {
         conn = ConnectionPool.getInstance().getConnection();
         Statement stmt = null;
         stmt = conn.createStatement();
-        String insertYear = "INSERT INTO seasons (season_id, resort_id)"
+        String insertYear = "INSERT INTO season (season_id, resort_id)"
                 + "VALUES (" + yearInfo + "," + resortId + ")";
         stmt.executeUpdate(insertYear);
         conn.close();

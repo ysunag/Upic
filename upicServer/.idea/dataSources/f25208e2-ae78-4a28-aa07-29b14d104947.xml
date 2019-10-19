@@ -23106,62 +23106,48 @@ VARIABLE_NAME</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="4218" parent="631" name="created_at">
-      <Position>7</Position>
-      <DataType>datetime|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="4219" parent="631" name="PRIMARY">
+    <key id="4218" parent="631" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>lift_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="4220" parent="632" name="resort_id">
+    <column id="4219" parent="632" name="resort_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="4221" parent="632" name="resort_name">
+    <column id="4220" parent="632" name="resort_name">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="4222" parent="632" name="created_at">
-      <Position>3</Position>
-      <DataType>datetime|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="4223" parent="632" name="PRIMARY">
+    <key id="4221" parent="632" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>resort_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="4224" parent="633" name="id">
+    <column id="4222" parent="633" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="4225" parent="633" name="season_id">
+    <column id="4223" parent="633" name="season_id">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="4226" parent="633" name="resort_id">
+    <column id="4224" parent="633" name="resort_id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="4227" parent="633" name="PRIMARY">
+    <key id="4225" parent="633" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -20,7 +20,7 @@ public class ConnectionPool {
       e.printStackTrace();
     }
     basicDataSource = new BasicDataSource();
-    basicDataSource.setUrl("jdbc:mysql://mydatabaseurl/Mysql?useSSL=false");
+    basicDataSource.setUrl("jdbc:mysql://localhost:3306/upic_schema?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
     basicDataSource.setUsername("root");
     basicDataSource.setPassword("rootroot");
     basicDataSource.setMinIdle(1);
