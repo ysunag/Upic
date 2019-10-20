@@ -3,6 +3,8 @@ package com.upic.filter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -140,8 +142,11 @@ public class ResortsStatisticsFilter implements Filter {
   public void init(FilterConfig fc) throws ServletException {
     stats = new ResortsStatistics();
 //    Path currentRelativePath = Paths.get("");
-//    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
-    path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
+//    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR;
+//    new File(path).mkdirs();
+//    path = path + "/";
+    path = "/var/tmp/";
+    //path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
   }
 
 }

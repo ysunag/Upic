@@ -3,6 +3,8 @@ package com.upic.filter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -39,6 +41,7 @@ public class SkierStatisticsFilter implements Filter {
     System.out.println("time is " + time);
 
     String[] pathParts = hsr.getPathInfo().split("/");
+    System.out.println("hsr.getMethod() is " + hsr.getMethod());
 
     if (pathParts.length == 3) {
       //get list of lifts request
@@ -62,7 +65,7 @@ public class SkierStatisticsFilter implements Filter {
     else if ("GET".equals(hsr.getMethod())) {
       //get list of lifts on a specific day
       stats.getLiftDayGetRecord().add(time);
-      System.out.println("stats.getLiftGetRecord().size(): " + stats.getLiftDayGetRecord().size());
+      System.out.println("stats.getLiftDayGetRecord().size(): " + stats.getLiftDayGetRecord().size());
       if (stats.getLiftDayGetRecord().size() >= RECORD_BOUND) {
         //write into csv
         File file = new File(path + LIFTDAY_GET_FILE);
@@ -80,7 +83,7 @@ public class SkierStatisticsFilter implements Filter {
     } else {
       //add season to specific resort
       stats.getLiftPostRecord().add(time);
-      System.out.println("stats.getLiftGetRecord().size(): " + stats.getLiftPostRecord().size());
+      System.out.println("stats.getLiftPostRecord().size(): " + stats.getLiftPostRecord().size());
       if (stats.getLiftPostRecord().size() >= RECORD_BOUND) {
         //write into csv
         File file = new File(path + LIFT_POST_FILE);
@@ -148,9 +151,12 @@ public class SkierStatisticsFilter implements Filter {
   @Override
   public void init(FilterConfig fc) throws ServletException {
     stats = new SkierStatistics();
-    path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
+//    path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
 //    Path currentRelativePath = Paths.get("");
-//    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
+////    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR;
+////    new File(path).mkdirs();
+////    path = path + "/";
+    path = "/var/tmp/";
     System.out.println("filter initialized");
   }
 
