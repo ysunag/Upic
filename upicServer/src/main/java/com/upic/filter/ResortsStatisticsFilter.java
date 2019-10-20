@@ -3,8 +3,6 @@ package com.upic.filter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ResortsStatisticsFilter implements Filter {
   public static ResortsStatistics stats;
   public static String path;
-  public static final int RECORD_BOUND = 1000;
+  public static final int RECORD_BOUND = 500;
 
   public static final String STATISTICS_DIR = "statistics";
   public static final String RESORT_GET_FILE = "resortGet.csv";

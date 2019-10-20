@@ -118,10 +118,11 @@ public class Runner implements Runnable {
     String dayID = "20";
 
     int responseCode = 0;
+    int res = 0;
     int i = 0;
-    while (i < RETRY_TIMES && responseCode != 200) {
+    while (i < RETRY_TIMES && responseCode != 200 && res <= 0) {
       try {
-        apiInstance.getSkierDayVertical(resortID, seasonID, dayID, skierId);
+        res = apiInstance.getSkierDayVertical(resortID, seasonID, dayID, skierId);
         responseCode = 200;
       } catch (ApiException e) {
         responseCode = e.getCode();
