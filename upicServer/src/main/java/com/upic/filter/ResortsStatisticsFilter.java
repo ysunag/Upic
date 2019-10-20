@@ -3,8 +3,6 @@ package com.upic.filter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -19,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 public class ResortsStatisticsFilter implements Filter {
   public static ResortsStatistics stats;
   public static String path;
+  public static final int RECORD_BOUND = 1000;
+
   public static final String STATISTICS_DIR = "statistics";
   public static final String RESORT_GET_FILE = "resortGet.csv";
   public static final String RESORT_GET_END_FILE = "resortGetEnd.csv";
@@ -40,7 +40,7 @@ public class ResortsStatisticsFilter implements Filter {
       //get list of resorts request
 
       stats.getResortsGetRecord().add(time);
-      if (stats.getResortsGetRecord().size() == 10000) {
+      if (stats.getResortsGetRecord().size() >= RECORD_BOUND) {
         //write into csv
         File file = new File(path + RESORT_GET_FILE);
         try(FileWriter writer = new FileWriter(file, false)) {
@@ -57,7 +57,7 @@ public class ResortsStatisticsFilter implements Filter {
     else if ("GET".equals(hsr.getMethod())) {
       //get list of seasons for specific resort
       stats.getSeasonsGetRecord().add(time);
-      if (stats.getSeasonsGetRecord().size() == 10000) {
+      if (stats.getSeasonsGetRecord().size() >= RECORD_BOUND) {
         //write into csv
         File file = new File(path + SEASON_GET_FILE);
         try(FileWriter writer = new FileWriter(file, false)) {
@@ -74,7 +74,7 @@ public class ResortsStatisticsFilter implements Filter {
     } else {
       //add season to specific resort
       stats.getSeasonsPostRecord().add(time);
-      if (stats.getSeasonsPostRecord().size() == 10000) {
+      if (stats.getSeasonsPostRecord().size() >= RECORD_BOUND) {
         //write into csv
         File file = new File(path + SEASON_POST_FILE);
         try(FileWriter writer = new FileWriter(file, false)) {
@@ -139,14 +139,9 @@ public class ResortsStatisticsFilter implements Filter {
   @Override
   public void init(FilterConfig fc) throws ServletException {
     stats = new ResortsStatistics();
-    Path currentRelativePath = Paths.get("");
-    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
-    new File(path + RESORT_GET_FILE);
-    new File(path + RESORT_GET_END_FILE);
-    new File(path + SEASON_GET_FILE);
-    new File(path + SEASON_GET_END_FILE);
-    new File(path + SEASON_POST_FILE);
-    new File(path + SEASON_POST_END_FILE);
+//    Path currentRelativePath = Paths.get("");
+//    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
+    path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
   }
 
 }

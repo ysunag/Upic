@@ -56,9 +56,9 @@ public class StatisticsServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //todo read stored files and calculate
-    Path currentRelativePath = Paths.get("");
-    String path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
+    String path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
+//    Path currentRelativePath = Paths.get("");
+//    String path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
     String fileName = "";
     String endFileName = "";
 

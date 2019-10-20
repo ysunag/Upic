@@ -70,8 +70,8 @@
       <file leaf-file-name="StatisticsServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-191">
-              <caret line="117" column="38" lean-forward="true" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
+            <state relative-caret-position="921">
+              <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConnectionPool.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ConnectionPool.java">
+      <file leaf-file-name="SkierStatisticsFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+            <state relative-caret-position="161">
+              <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,12 +91,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/persistence.xml">
+      <file leaf-file-name="ResortsStatisticsFilter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="257">
+              <caret line="61" column="53" lean-forward="true" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,65 +106,64 @@
       <file leaf-file-name="ResortsServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+            <state relative-caret-position="-12">
+              <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1571530749760" expanded="true" signature="2773:2878" ph="INSERT INTO seasons... " />
-                <marker date="1571530749760" expanded="true" signature="4174:4187" ph="SELECT SUM(s... users" />
-                <marker date="1571530749760" expanded="true" signature="4174:4194" ph="SELECT * FRO... resort" />
-                <marker date="1571530749760" expanded="true" signature="4174:4195" ph="SELECT * FRO... " />
-                <marker date="1571530749760" expanded="true" signature="5970:5978" ph="SELECT DISCO... " />
-                <marker date="1571530749760" expanded="true" signature="5970:6141" ph="SELECT DISTI... season" />
-                <marker date="1571530749760" expanded="true" signature="5970:6157" ph="SELECT SUM(s... users" />
-                <marker date="1571530749760" expanded="true" signature="5970:6158" ph="SELECT DISTI... season" />
+                <marker date="1571531086111" expanded="true" signature="2738:2843" ph="INSERT INTO seasons... " />
+                <marker date="1571531086111" expanded="true" signature="3892:3905" ph="SELECT SUM(s... users" />
+                <marker date="1571531086111" expanded="true" signature="3892:3912" ph="SELECT * FRO... resort" />
+                <marker date="1571531086111" expanded="true" signature="3892:3913" ph="SELECT * FRO... " />
+                <marker date="1571531086111" expanded="true" signature="5453:5461" ph="SELECT DISCO... " />
+                <marker date="1571531086111" expanded="true" signature="5453:5624" ph="SELECT DISTI... season" />
+                <marker date="1571531086111" expanded="true" signature="5453:5640" ph="SELECT SUM(s... users" />
+                <marker date="1571531086111" expanded="true" signature="5453:5641" ph="SELECT DISTI... season" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SkiersServlet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SkierStatistics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResortsStatistics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="28" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SkiersServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="257" column="9" lean-forward="true" selection-start-line="257" selection-start-column="9" selection-end-line="257" selection-end-column="9" />
+            <state relative-caret-position="664">
+              <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
               <folding>
-                <marker date="1571530838393" expanded="true" signature="3868:4043" ph="INSERT INTO lift... " />
-                <marker date="1571530838393" expanded="true" signature="3868:4059" ph="INSERT INTO lift... " />
-                <marker date="1571530838393" expanded="true" signature="3868:4069" ph="INSERT INTO lift... " />
-                <marker date="1571530838393" expanded="true" signature="3868:4072" ph="INSERT INTO lift... " />
-                <marker date="1571530838393" expanded="true" signature="3868:4087" ph="INSERT INTO lift... " />
-                <marker date="1571530838393" expanded="true" signature="6535:6719" ph="SELECT SUM(s... users" />
-                <marker date="1571530838393" expanded="true" signature="6535:6735" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="6535:6736" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="6535:6788" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="6535:6803" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="6535:6804" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="8676:8946" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="8676:8958" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="8676:8959" ph="SELECT lift_... lift" />
-                <marker date="1571530838393" expanded="true" signature="8676:8961" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="3710:3885" ph="INSERT INTO lift... " />
+                <marker date="1571536798196" expanded="true" signature="3710:3901" ph="INSERT INTO lift... " />
+                <marker date="1571536798196" expanded="true" signature="3710:3911" ph="INSERT INTO lift... " />
+                <marker date="1571536798196" expanded="true" signature="3710:3914" ph="INSERT INTO lift... " />
+                <marker date="1571536798196" expanded="true" signature="3710:3929" ph="INSERT INTO lift... " />
+                <marker date="1571536798196" expanded="true" signature="6214:6398" ph="SELECT SUM(s... users" />
+                <marker date="1571536798196" expanded="true" signature="6214:6414" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="6214:6415" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="6214:6467" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="6214:6482" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="6214:6483" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="8263:8533" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="8263:8545" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="8263:8546" ph="SELECT lift_... lift" />
+                <marker date="1571536798196" expanded="true" signature="8263:8548" ph="SELECT lift_... lift" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LiftEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/LiftEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="14" column="21" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResortEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -173,30 +174,6 @@
             <state relative-caret-position="408">
               <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SkierStatisticsFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResortsStatisticsFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-759">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -214,6 +191,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>J</find>
+      <find>System</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -236,17 +214,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/Statistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/LiftEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/SkierListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/ConnectionPool.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java" />
       </list>
     </option>
   </component>
@@ -339,6 +317,21 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="upic" type="462c0819:PsiDirectoryNode" />
               <item name="servlet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="upicServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="upicServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="upicServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="upicServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -647,12 +640,12 @@
       <workItem from="1569447864943" duration="3393000" />
       <workItem from="1570311960628" duration="12192000" />
       <workItem from="1571090951210" duration="35258000" />
-      <workItem from="1571441111921" duration="10129000" />
+      <workItem from="1571441111921" duration="14666000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88759000" />
+    <option name="totallyTimeSpent" value="93296000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,7 +677,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36033857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36033857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3470375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23891273" sideWeight="0.2882883" order="3" side_tool="true" content_ui="tabs" />
@@ -762,15 +755,14 @@
         <state relative-caret-position="153">
           <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1571530749760" expanded="true" signature="2773:2878" ph="INSERT INTO seasons... " />
-            <marker date="1571530749760" expanded="true" signature="4174:4187" ph="SELECT SUM(s... users" />
-            <marker date="1571530749760" expanded="true" signature="4174:4194" ph="SELECT * FRO... resort" />
-            <marker date="1571530749760" expanded="true" signature="4174:4195" ph="SELECT * FRO... " />
-            <marker date="1571530749760" expanded="true" signature="5970:5978" ph="SELECT DISCO... " />
-            <marker date="1571530749760" expanded="true" signature="5970:6141" ph="SELECT DISTI... season" />
-            <marker date="1571530749760" expanded="true" signature="5970:6157" ph="SELECT SUM(s... users" />
-            <marker date="1571530749760" expanded="true" signature="5970:6158" ph="SELECT DISTI... season" />
+            <marker date="1571531086111" expanded="true" signature="2738:2843" ph="INSERT INTO seasons... " />
+            <marker date="1571531086111" expanded="true" signature="3892:3905" ph="SELECT SUM(s... users" />
+            <marker date="1571531086111" expanded="true" signature="3892:3912" ph="SELECT * FRO... resort" />
+            <marker date="1571531086111" expanded="true" signature="3892:3913" ph="SELECT * FRO... " />
+            <marker date="1571531086111" expanded="true" signature="5453:5461" ph="SELECT DISCO... " />
+            <marker date="1571531086111" expanded="true" signature="5453:5624" ph="SELECT DISTI... season" />
+            <marker date="1571531086111" expanded="true" signature="5453:5640" ph="SELECT SUM(s... users" />
+            <marker date="1571531086111" expanded="true" signature="5453:5641" ph="SELECT DISTI... season" />
           </folding>
         </state>
       </provider>
@@ -788,21 +780,21 @@
         <state relative-caret-position="1972">
           <caret line="130" column="50" lean-forward="true" selection-start-line="130" selection-start-column="50" selection-end-line="130" selection-end-column="50" />
           <folding>
-            <marker date="1571530838393" expanded="true" signature="3868:4043" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4059" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4069" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4072" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4087" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="6535:6719" ph="SELECT SUM(s... users" />
-            <marker date="1571530838393" expanded="true" signature="6535:6735" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6736" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6788" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6803" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6804" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8946" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8958" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8959" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8961" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="3710:3885" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3901" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3911" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3914" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3929" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="6214:6398" ph="SELECT SUM(s... users" />
+            <marker date="1571536798196" expanded="true" signature="6214:6414" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6415" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6467" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6482" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6483" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8533" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8545" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8546" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8548" ph="SELECT lift_... lift" />
           </folding>
         </state>
       </provider>
@@ -856,15 +848,14 @@
         <state relative-caret-position="153">
           <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1571530749760" expanded="true" signature="2773:2878" ph="INSERT INTO seasons... " />
-            <marker date="1571530749760" expanded="true" signature="4174:4187" ph="SELECT SUM(s... users" />
-            <marker date="1571530749760" expanded="true" signature="4174:4194" ph="SELECT * FRO... resort" />
-            <marker date="1571530749760" expanded="true" signature="4174:4195" ph="SELECT * FRO... " />
-            <marker date="1571530749760" expanded="true" signature="5970:5978" ph="SELECT DISCO... " />
-            <marker date="1571530749760" expanded="true" signature="5970:6141" ph="SELECT DISTI... season" />
-            <marker date="1571530749760" expanded="true" signature="5970:6157" ph="SELECT SUM(s... users" />
-            <marker date="1571530749760" expanded="true" signature="5970:6158" ph="SELECT DISTI... season" />
+            <marker date="1571531086111" expanded="true" signature="2738:2843" ph="INSERT INTO seasons... " />
+            <marker date="1571531086111" expanded="true" signature="3892:3905" ph="SELECT SUM(s... users" />
+            <marker date="1571531086111" expanded="true" signature="3892:3912" ph="SELECT * FRO... resort" />
+            <marker date="1571531086111" expanded="true" signature="3892:3913" ph="SELECT * FRO... " />
+            <marker date="1571531086111" expanded="true" signature="5453:5461" ph="SELECT DISCO... " />
+            <marker date="1571531086111" expanded="true" signature="5453:5624" ph="SELECT DISTI... season" />
+            <marker date="1571531086111" expanded="true" signature="5453:5640" ph="SELECT SUM(s... users" />
+            <marker date="1571531086111" expanded="true" signature="5453:5641" ph="SELECT DISTI... season" />
           </folding>
         </state>
       </provider>
@@ -987,76 +978,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/concurrent/atomic/AtomicLong.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1734">
           <caret line="145" column="25" lean-forward="false" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="28" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#587#588#0" expanded="false" />
-            <element signature="e#620#621#0" expanded="false" />
-            <element signature="e#665#666#0" expanded="false" />
-            <element signature="e#698#699#0" expanded="false" />
-            <element signature="e#744#745#0" expanded="false" />
-            <element signature="e#778#779#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#568#569#0" expanded="false" />
-            <element signature="e#598#599#0" expanded="false" />
-            <element signature="e#643#644#0" expanded="false" />
-            <element signature="e#676#677#0" expanded="false" />
-            <element signature="e#719#720#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/LiftEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1093,23 +1018,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/LiftEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-191">
-          <caret line="117" column="38" lean-forward="true" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-759">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,44 +1042,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+        <state relative-caret-position="470">
+          <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/StatisticsServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="921">
+          <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1571530749760" expanded="true" signature="2773:2878" ph="INSERT INTO seasons... " />
-            <marker date="1571530749760" expanded="true" signature="4174:4187" ph="SELECT SUM(s... users" />
-            <marker date="1571530749760" expanded="true" signature="4174:4194" ph="SELECT * FRO... resort" />
-            <marker date="1571530749760" expanded="true" signature="4174:4195" ph="SELECT * FRO... " />
-            <marker date="1571530749760" expanded="true" signature="5970:5978" ph="SELECT DISCO... " />
-            <marker date="1571530749760" expanded="true" signature="5970:6141" ph="SELECT DISTI... season" />
-            <marker date="1571530749760" expanded="true" signature="5970:6157" ph="SELECT SUM(s... users" />
-            <marker date="1571530749760" expanded="true" signature="5970:6158" ph="SELECT DISTI... season" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/ResortsServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12">
+          <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+          <folding>
+            <marker date="1571531086111" expanded="true" signature="2738:2843" ph="INSERT INTO seasons... " />
+            <marker date="1571531086111" expanded="true" signature="3892:3905" ph="SELECT SUM(s... users" />
+            <marker date="1571531086111" expanded="true" signature="3892:3912" ph="SELECT * FRO... resort" />
+            <marker date="1571531086111" expanded="true" signature="3892:3913" ph="SELECT * FRO... " />
+            <marker date="1571531086111" expanded="true" signature="5453:5461" ph="SELECT DISCO... " />
+            <marker date="1571531086111" expanded="true" signature="5453:5624" ph="SELECT DISTI... season" />
+            <marker date="1571531086111" expanded="true" signature="5453:5640" ph="SELECT SUM(s... users" />
+            <marker date="1571531086111" expanded="true" signature="5453:5641" ph="SELECT DISTI... season" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="28" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/servlet/SkiersServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="257" column="9" lean-forward="true" selection-start-line="257" selection-start-column="9" selection-end-line="257" selection-end-column="9" />
+        <state relative-caret-position="664">
+          <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
           <folding>
-            <marker date="1571530838393" expanded="true" signature="3868:4043" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4059" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4069" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4072" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="3868:4087" ph="INSERT INTO lift... " />
-            <marker date="1571530838393" expanded="true" signature="6535:6719" ph="SELECT SUM(s... users" />
-            <marker date="1571530838393" expanded="true" signature="6535:6735" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6736" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6788" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6803" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="6535:6804" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8946" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8958" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8959" ph="SELECT lift_... lift" />
-            <marker date="1571530838393" expanded="true" signature="8676:8961" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="3710:3885" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3901" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3911" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3914" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="3710:3929" ph="INSERT INTO lift... " />
+            <marker date="1571536798196" expanded="true" signature="6214:6398" ph="SELECT SUM(s... users" />
+            <marker date="1571536798196" expanded="true" signature="6214:6414" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6415" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6467" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6482" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="6214:6483" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8533" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8545" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8546" ph="SELECT lift_... lift" />
+            <marker date="1571536798196" expanded="true" signature="8263:8548" ph="SELECT lift_... lift" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/SkierStatisticsFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/upic/filter/ResortsStatisticsFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="61" column="53" lean-forward="true" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

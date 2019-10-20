@@ -21,6 +21,8 @@ public class Runner implements Runnable {
   private SkiersApi apiInstance;
   private boolean issueGetRequest;
 
+  public static final int RETRY_TIMES = 5;
+
 
   public Runner(String serverAddress, int[] timeRange, int[] skierRange, CountDownLatch phaseLatch,
                 CountDownLatch totalLatch, int numOfRequests, int numOfSkiLifts, Metrics metrics, boolean issueGetRequest) {
@@ -34,6 +36,7 @@ public class Runner implements Runnable {
     this.issueGetRequest = issueGetRequest;
     apiInstance = new SkiersApi();
     ApiClient client = apiInstance.getApiClient();
+
     client.setBasePath(serverAddress);
   }
 
@@ -76,17 +79,27 @@ public class Runner implements Runnable {
     body.setLiftID(liftId);
     body.setTime(time);
 
-    int responseCode;
-    try {
-      apiInstance.writeNewLiftRide(body, resortID, seasonID, dayID, skierId);
-      metrics.getSuccessfulRequest().getAndIncrement();
-      responseCode = 201;
-    } catch (ApiException e) {
-      metrics.getUnsuccessfulRequest().getAndIncrement();
-      responseCode = e.getCode();
-      System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
-      e.printStackTrace();
+    int responseCode = 0;
+    int i = 0;
+    while (i < RETRY_TIMES && responseCode != 201) {
+      try {
+        apiInstance.writeNewLiftRide(body, resortID, seasonID, dayID, skierId);
+
+        responseCode = 201;
+      } catch (ApiException e) {
+
+        responseCode = e.getCode();
+        System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
+        e.printStackTrace();
+      }
+      i++;
     }
+    if (responseCode == 201) {
+      metrics.getSuccessfulRequest().getAndIncrement();
+    } else {
+      metrics.getUnsuccessfulRequest().getAndIncrement();
+    }
+
 
     long endTime = System.currentTimeMillis();
     try {
@@ -104,16 +117,23 @@ public class Runner implements Runnable {
     String seasonID = "2019";
     String dayID = "20";
 
-    int responseCode;
-    try {
-      apiInstance.getSkierDayVertical(resortID, seasonID, dayID, skierId);
+    int responseCode = 0;
+    int i = 0;
+    while (i < RETRY_TIMES && responseCode != 200) {
+      try {
+        apiInstance.getSkierDayVertical(resortID, seasonID, dayID, skierId);
+        responseCode = 200;
+      } catch (ApiException e) {
+        responseCode = e.getCode();
+        System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
+        e.printStackTrace();
+      }
+      i++;
+    }
+    if (responseCode == 200) {
       metrics.getSuccessfulRequest().getAndIncrement();
-      responseCode = 200;
-    } catch (ApiException e) {
+    } else {
       metrics.getUnsuccessfulRequest().getAndIncrement();
-      responseCode = e.getCode();
-      System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
-      e.printStackTrace();
     }
 
     long endTime = System.currentTimeMillis();

@@ -70,14 +70,14 @@ public class SkiersServlet extends HttpServlet {
 
 
         String body = IOUtils.toString(request.getReader());
-        System.out.println(body);
+        //System.out.println(body);
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(body);
         JsonObject jsonObject = element.getAsJsonObject();
         String timeInfo = jsonObject.get("time").getAsString();
         String liftIdInfo = jsonObject.get("liftID").getAsString();
-        System.out.println(timeInfo);
-        System.out.println(liftIdInfo);
+//        System.out.println(timeInfo);
+//        System.out.println(liftIdInfo);
 
         if (!isInteger(timeInfo, 10)) {
           response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -234,7 +234,7 @@ public class SkiersServlet extends HttpServlet {
           while(rs.next()){
             totalDayVert += 1;
           }
-          System.out.println("day vert is " + totalDayVert);
+         // System.out.println("day vert is " + totalDayVert);
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(Integer.toString(totalDayVert));
           conn.close();
