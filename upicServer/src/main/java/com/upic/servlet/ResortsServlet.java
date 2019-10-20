@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,14 +75,13 @@ public class ResortsServlet extends HttpServlet {
       }
       int year = Integer.parseInt(yearInfo);
 
-      // todo add year to the resort
       Connection conn = null;
       try {
         conn = ConnectionPool.getInstance().getConnection();
         Statement stmt = null;
         stmt = conn.createStatement();
         String insertYear = "INSERT INTO season (season_id, resort_id)"
-                + "VALUES (" + yearInfo + "," + resortId + ")";
+                + " VALUES (" + yearInfo + "," + resortId + ")";
         stmt.executeUpdate(insertYear);
         conn.close();
       } catch (SQLException e) {
@@ -90,7 +91,6 @@ public class ResortsServlet extends HttpServlet {
       }
 
       response.setStatus(HttpServletResponse.SC_CREATED);
-      out.print("{\"message\":\"add new season in year" + year + " for resort " + resortId + " request received\"}");
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
       response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
@@ -106,8 +106,6 @@ public class ResortsServlet extends HttpServlet {
 
       String pathInfo = request.getPathInfo();
       if(pathInfo == null) {
-        response.setStatus(HttpServletResponse.SC_OK);
-        out.print("{\"message\":\"getResorts request received\"}");
 
         Connection conn = null;
         try {
@@ -117,25 +115,24 @@ public class ResortsServlet extends HttpServlet {
           stmt = conn.createStatement();
           String getStep = "SELECT * FROM resort;";
           ResultSet rs = stmt.executeQuery(getStep);
-          JSONArray json = new JSONArray();
+          JSONArray jsonArray = new JSONArray();
 
           while(rs.next()){
-            JSONObject obj = new JSONObject();
-            obj.put("resortName", rs.getString("resort_name"));
-            obj.put("resortID", rs.getInt("resort_id"));
-            json.put(obj);
+            JSONObject resortObj = new JSONObject();
+            resortObj.put("resortName", rs.getString("resort_name"));
+            resortObj.put("resortID", rs.getInt("resort_id"));
+            jsonArray.put(resortObj);
           }
-
+          JSONObject obj = new JSONObject();
+          obj.put("resorts", jsonArray);
           response.setStatus(HttpServletResponse.SC_OK);
-          out.write(json.toString());
+          out.write(obj.toString());
           conn.close();
 
         } catch (SQLException e) {
           e.printStackTrace();
         }
 
-//        response.setStatus(HttpServletResponse.SC_OK);
-//        out.write("{\"message\":\"get a list of seasons for the specified resort request received\"}");
       } else {
         String[] pathParts = pathInfo.split("/");
         System.out.println(pathParts.length);
@@ -150,12 +147,7 @@ public class ResortsServlet extends HttpServlet {
           return;
         }
         int resortId = Integer.parseInt(pathParts[1]);
-//        todo check if resort can be found when connecting to database
-//        if (!resortIdExist) {
-//          response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//          out.write("{\"message\":\"Resort not found\"}");
-//          return;
-//        }
+        System.out.println("resortId is " + resortId);
 
         Connection conn = null;
         try {
@@ -163,25 +155,29 @@ public class ResortsServlet extends HttpServlet {
           conn = ConnectionPool.getInstance().getConnection();
           Statement stmt = null;
           stmt = conn.createStatement();
-          String getStep = "SELECT DISTINCT" +
+          String getSeasons = "SELECT DISTINCT" +
                   " season_id" +
                   " FROM" +
                   " season" +
                   " WHERE" +
-                  " resort_id = '" + resortId + "';";
-          ResultSet rs = stmt.executeQuery(getStep);
+                  " resort_id = " + resortId + ";";
+          ResultSet rs = stmt.executeQuery(getSeasons);
           JSONObject obj = new JSONObject();
-          obj.put("seasons", rs.getArray("season_id"));
+
+          List<String> list = new ArrayList<>();
+          while (rs.next()) {
+            list.add(rs.getString("season_id"));
+          }
+          obj.put("seasons", list);
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(obj.toString());
+          conn.close();
         } catch (SQLException e) {
           e.printStackTrace();
           response.setStatus(HttpServletResponse.SC_NOT_FOUND);
           out.write("{\"error\":\"seasons of given resort not found\"}");
+          return;
         }
-        response.setStatus(HttpServletResponse.SC_OK);
-        out.write("{\"message\":\"get a list of seasons for the specified resort request received\"}");
-        conn.close();
       }
     } catch (Exception e) {
       LOGGER.error(e.getMessage());

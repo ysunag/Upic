@@ -1,7 +1,12 @@
 package com.upic.servlet;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.util.IOUtils;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -21,21 +26,27 @@ import static com.upic.filter.ResortsStatisticsFilter.RESORT_GET_END_FILE;
 import static com.upic.filter.ResortsStatisticsFilter.RESORT_GET_FILE;
 import static com.upic.filter.ResortsStatisticsFilter.SEASON_GET_END_FILE;
 import static com.upic.filter.ResortsStatisticsFilter.SEASON_GET_FILE;
+import static com.upic.filter.ResortsStatisticsFilter.SEASON_POST_END_FILE;
+import static com.upic.filter.ResortsStatisticsFilter.SEASON_POST_FILE;
 import static com.upic.filter.ResortsStatisticsFilter.STATISTICS_DIR;
 import static com.upic.filter.SkierStatisticsFilter.LIFTDAY_GET_END_FILE;
 import static com.upic.filter.SkierStatisticsFilter.LIFTDAY_GET_FILE;
 import static com.upic.filter.SkierStatisticsFilter.LIFT_GET_END_FILE;
 import static com.upic.filter.SkierStatisticsFilter.LIFT_GET_FILE;
+import static com.upic.filter.SkierStatisticsFilter.LIFT_POST_END_FILE;
+import static com.upic.filter.SkierStatisticsFilter.LIFT_POST_FILE;
 
 @WebServlet(urlPatterns = "/statistics/*")
 public class StatisticsServlet extends HttpServlet {
-  public static final String RESORT_GET = "resortGet";
-  public static final String SEASON_GET = "seasonGet";
-  public static final String SEASON_POST = "seasonPost";
+  public static final String GET = "get";
+  public static final String POST = "post";
 
-  public static final String LIFT_GET = "liftGet";
-  public static final String LIFTDAY_GET = "liftDayGet";
-  public static final String LIFT_POST = "liftPost";
+  public static final String RESORT = "/resorts";
+  public static final String SEASON = "/resorts/{resortID}/seasons";
+
+  public static final String LIFT_ALL = "/skiers/{skierID}/vertical";
+  public static final String LIFT = "/skiers/{resortID}/seasons/{seasonID}/days/{dayID}/skiers/{skierID}";
+
 
   private static final Logger LOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
 
@@ -63,41 +74,50 @@ public class StatisticsServlet extends HttpServlet {
         out.write("{\"message\":\"invalid request\"}");
         return;
       }
-      String req = pathInfo.split("/")[1];
-      if (req.equals(RESORT_GET)) {
+
+      String body = IOUtils.toString(request.getReader());
+      System.out.println(body);
+      JsonParser parser = new JsonParser();
+      JsonElement element = parser.parse(body);
+      JsonObject jsonObject = element.getAsJsonObject();
+      String operation = jsonObject.get("operation").getAsString();
+
+      if (pathInfo.equals(RESORT)) {
         fileName = RESORT_GET_FILE;
         endFileName = RESORT_GET_END_FILE;
       }
 
-      if (req.equals(SEASON_GET)) {
+      if (pathInfo.equals(SEASON) && operation.equals(GET)) {
         fileName = SEASON_GET_FILE;
         endFileName = SEASON_GET_END_FILE;
       }
 
-      if (req.equals(SEASON_POST)) {
-        fileName = SEASON_POST;
-        endFileName = SEASON_POST;
+      if (pathInfo.equals(SEASON) && operation.equals(POST)) {
+        fileName = SEASON_POST_FILE;
+        endFileName = SEASON_POST_END_FILE;
       }
 
-      if (req.equals(LIFT_GET)) {
+      if (pathInfo.equals(LIFT_ALL)) {
         fileName = LIFT_GET_FILE;
         endFileName = LIFT_GET_END_FILE;
       }
 
-      if (req.equals(LIFTDAY_GET)) {
+      if (pathInfo.equals(LIFT) && operation.equals(GET)) {
         fileName = LIFTDAY_GET_FILE;
         endFileName = LIFTDAY_GET_END_FILE;
       }
 
-      if (req.equals(LIFT_POST)) {
-        fileName = LIFT_POST;
-        endFileName = LIFT_POST;
+      if (pathInfo.equals(LIFT) && operation.equals (POST)) {
+        fileName = LIFT_POST_FILE;
+        endFileName = LIFT_POST_END_FILE;
       }
 
       long[] result = getStatistics(path + endFileName, path + fileName);
       JSONObject obj = new JSONObject();
-      obj.put(req + "_mean_latency", result[0]);
-      obj.put(req + "_max_latency", result[1]);
+      obj.put("URL", pathInfo);
+      obj.put("operation", operation);
+      obj.put("mean", result[0]);
+      obj.put("max", result[1]);
       response.setStatus(HttpServletResponse.SC_OK);
       out.write(obj.toString());
     } catch (Exception e) {

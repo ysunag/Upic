@@ -30,12 +30,7 @@ public class SkiersServlet extends HttpServlet {
   private static final String DAYS = "days";
   private static final String SKIERS = "skiers";
 
-
-
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    EntityManagerFactory emf =
-//            (EntityManagerFactory)getServletContext().getAttribute("emf");
-//    EntityManager em = emf.createEntityManager();
 
     try {
       response.setContentType("application/json");
@@ -73,21 +68,6 @@ public class SkiersServlet extends HttpServlet {
         String dayId = pathParts[5];
         int skierId = Integer.parseInt(pathParts[7]);
 
-        // todo check each id is valid when connecting to database
-
-//
-//        if (!resortIdExist) {
-//          response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//          out.write("{\"error\":\"Resort not found\"}");
-//          return;
-//        }
-//
-//        if (!seasonIdExist) {
-//          response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//          out.write("{\"error\":\"Season not found\"}");
-//          return;
-//        }
-
 
         String body = IOUtils.toString(request.getReader());
         System.out.println(body);
@@ -112,24 +92,14 @@ public class SkiersServlet extends HttpServlet {
         }
         int liftId = Integer.parseInt(liftIdInfo);
 
-        //todo create record in databse
-//        em.getTransaction().begin();
-//        LiftEntity record = new LiftEntity();
-//        record.setDayId(dayId);
-//        record.setResortId(resortId);
-//        record.setSeasonId(seasonId);
-//        record.setLiftTime(time);
-//        record.setSkierId(skierId);
-//        em.persist(record);
-//        em.getTransaction().commit();
         Connection conn = null;
         try {
           conn = ConnectionPool.getInstance().getConnection();
           Statement stmt = null;
           stmt = conn.createStatement();
-          String insertRecord = "INSERT INTO lift (resort_id, season_id, day_id, skier_id, lift_time)"
+          String insertRecord = "INSERT INTO lift (resort_id, season_id, day_id, skier_id, lift_time, lift_id)"
                   + "VALUES (" + resortId + "," + seasonId + ","  + dayId
-                  + "," + skierId + "," + time + ")";
+                  + "," + skierId + "," + time + "," + liftId + ")";
           stmt.executeUpdate(insertRecord);
           conn.close();
         } catch (SQLException e) {
@@ -150,10 +120,6 @@ public class SkiersServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    EntityManagerFactory emf =
-//            (EntityManagerFactory)getServletContext().getAttribute("emf");
-//    EntityManager em = emf.createEntityManager();
-
 
     try {
       response.setContentType("application/json");
@@ -188,19 +154,6 @@ public class SkiersServlet extends HttpServlet {
           String resortId = request.getParameter("resort");
           String seasonId = request.getParameter("season");
 
-          //todo: get return json from database
-//          Query q = em.createQuery("select l from LiftEntity l");
-//          List<LiftEntity> liftList = q.getResultList();
-//
-//
-//          if (liftList.size() <= 0) {
-//            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//            out.write("{\"error\":\"Skier not found\"}");
-//            return;
-//          }
-
-          //todo: form liftlist to json
-
           Connection conn = null;
           try {
             int totalVert = 0;
@@ -212,8 +165,8 @@ public class SkiersServlet extends HttpServlet {
                     " FROM" +
                     " lift" +
                     " WHERE" +
-                    " resort_id = '" + resortId + "' AND season_id = '"
-                    + seasonId + "' AND skier_id = '" + skierId + "';";
+                    " resort_id = " + resortId + " AND season_id = "
+                    + seasonId + " AND skier_id = " + skierId + ";";
             ResultSet rs = stmt.executeQuery(getStep);
             if (rs.next()) {
               totalVert = 1;
@@ -235,8 +188,6 @@ public class SkiersServlet extends HttpServlet {
           } catch (SQLException e) {
             e.printStackTrace();
           }
-
-          //out.write("{\"message\":\"get total vertical for skiers request received\"}");
           return;
         }
 
@@ -259,18 +210,6 @@ public class SkiersServlet extends HttpServlet {
         int dayId = Integer.parseInt(pathParts[5]);
         int skierId = Integer.parseInt(pathParts[7]);
 
-        //todo: get return json from database
-//        Query q = em.createQuery("select l from LiftEntity l");
-//        List<LiftEntity> liftDayList = q.getResultList();
-
-//
-//        if (liftDayList.size() <= 0) {
-//          response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//          out.write("{\"error\":\"get vertical for skiers on specific day not found\"}");
-//          return;
-//        }
-
-        //todo: form liftlist to json
         Connection conn = null;
         try {
           int totalDayVert = 0;
@@ -282,8 +221,8 @@ public class SkiersServlet extends HttpServlet {
                   " FROM" +
                   " lift" +
                   " WHERE" +
-                  " resort_id = '" + resortId + "' AND season_id = '"
-                  + seasonId + "' AND skier_id = '" + skierId + "' AND day_id = '" + dayId + "';";
+                  " resort_id = " + resortId + " AND season_id = "
+                  + seasonId + " AND skier_id = " + skierId + " AND day_id = " + dayId + ";";
           ResultSet rs = stmt.executeQuery(getStep);
           if (rs.next()) {
             totalDayVert = 1;
@@ -295,8 +234,9 @@ public class SkiersServlet extends HttpServlet {
           while(rs.next()){
             totalDayVert += 1;
           }
+          System.out.println("day vert is " + totalDayVert);
           response.setStatus(HttpServletResponse.SC_OK);
-          out.write(totalDayVert);
+          out.write(Integer.toString(totalDayVert));
           conn.close();
           return;
         } catch (SQLException e) {
