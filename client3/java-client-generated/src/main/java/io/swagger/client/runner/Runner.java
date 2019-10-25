@@ -44,13 +44,11 @@ public class Runner implements Runnable {
     StringBuilder sb = new StringBuilder();
     System.out.println("Time starts " + timeRange[0] + ", number of requests is" + numOfRequests);
     for (int i = 0; i < numOfRequests; i++) {
-      int skierId = ThreadLocalRandom.current().nextInt(skierRange[1] - skierRange[0] + 1) + skierRange[0];
-      int time = ThreadLocalRandom.current().nextInt(timeRange[1] - timeRange[0] + 1) + timeRange[0];
-      int liftId = ThreadLocalRandom.current().nextInt(numOfSkiLifts) + 1;
+      int[] ids = null;
       try {
-        makePostRequest(skierId, time, liftId, sb);
-        if (issueGetRequest) {
-          makeGetRequest(skierId, time, liftId, sb);
+        ids = makePostRequest(sb);
+        if (issueGetRequest && ids != null) {
+          makeGetRequest(sb, ids);
         }
       }
       catch(Exception e) {
@@ -70,19 +68,36 @@ public class Runner implements Runnable {
 
   }
 
-  private void makePostRequest(int skierId, int time, int liftId, StringBuilder sb) throws Exception{
+  private int[] generateIds() {
+    int[] res = new int[6];
+    res[0] = ThreadLocalRandom.current().nextInt(skierRange[1] - skierRange[0] + 1) + skierRange[0];
+    res[1] = ThreadLocalRandom.current().nextInt(timeRange[1] - timeRange[0] + 1) + timeRange[0];
+    res[2] = ThreadLocalRandom.current().nextInt(numOfSkiLifts) + 1;
+    res[3] = ThreadLocalRandom.current().nextInt(30) + 1;
+    res[4] = ThreadLocalRandom.current().nextInt(10) + 2009;
+    res[5] = ThreadLocalRandom.current().nextInt(365) + 1;
+    return res;
+  }
+
+  private int[] makePostRequest(StringBuilder sb) throws Exception{
     long startTime = System.currentTimeMillis();
-    int resortID = 10;
-    String seasonID = "2019";
-    String dayID = "20";
+
     LiftRide body = new LiftRide();
-    body.setLiftID(liftId);
-    body.setTime(time);
+    int[] ids = null;
 
     int responseCode = 0;
     int i = 0;
     while (i < RETRY_TIMES && responseCode != 201) {
       try {
+        ids = generateIds();
+        int skierId = ids[0];
+        int time = ids[1];
+        int liftId = ids[2];
+        int resortID = ids[3];
+        String seasonID = Integer.toString(ids[4]);
+        String dayID = Integer.toString(ids[5]);
+        body.setLiftID(liftId);
+        body.setTime(time);
         apiInstance.writeNewLiftRide(body, resortID, seasonID, dayID, skierId);
 
         responseCode = 201;
@@ -92,6 +107,7 @@ public class Runner implements Runnable {
         System.err.println("Exception when calling SkierAPI#writeNewLiftRide. Error Code: " + e.getCode());
         e.printStackTrace();
       }
+
       i++;
     }
     if (responseCode == 201) {
@@ -108,14 +124,16 @@ public class Runner implements Runnable {
       System.err.println("Exception when writing single request record");
       e.printStackTrace();
     }
+    return responseCode == 201? ids: null;
 
   }
 
-  private void makeGetRequest(int skierId, int time, int liftId, StringBuilder sb) throws Exception{
+  private void makeGetRequest(StringBuilder sb, int[] ids) throws Exception{
     long startTime = System.currentTimeMillis();
-    int resortID = 10;
-    String seasonID = "2019";
-    String dayID = "20";
+    int skierId = ids[0];
+    int resortID = ids[3];
+    String seasonID = Integer.toString(ids[4]);
+    String dayID = Integer.toString(ids[5]);
 
     int responseCode = 0;
     int res = 0;
