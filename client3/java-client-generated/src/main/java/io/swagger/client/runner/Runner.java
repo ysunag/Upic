@@ -1,6 +1,8 @@
 package io.swagger.client.runner;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -20,8 +22,11 @@ public class Runner implements Runnable {
   private Metrics metrics;
   private SkiersApi apiInstance;
   private boolean issueGetRequest;
+  private int successCount;
+  private int unsuccessCount;
+  private List<Long> latencyList;
 
-  public static final int RETRY_TIMES = 5;
+  public static final int RETRY_TIMES = 10;
 
 
   public Runner(String serverAddress, int[] timeRange, int[] skierRange, CountDownLatch phaseLatch,
@@ -36,6 +41,10 @@ public class Runner implements Runnable {
     this.issueGetRequest = issueGetRequest;
     apiInstance = new SkiersApi();
     ApiClient client = apiInstance.getApiClient();
+
+    successCount = 0;
+    unsuccessCount = 0;
+    latencyList = new ArrayList<>();
 
     client.setBasePath(serverAddress);
   }
@@ -57,6 +66,12 @@ public class Runner implements Runnable {
       }
 
     }
+
+
+    metrics.getSuccessfulRequest().getAndAdd(successCount);
+    metrics.getUnsuccessfulRequest().getAndAdd(unsuccessCount);
+    metrics.getLatency().addAll(latencyList);
+
     metrics.getRecord().add(sb.toString());
     //System.out.println("added record " + metrics.getRecord().size() + " : " + sb.toString());
     phaseLatch.countDown();
@@ -111,9 +126,11 @@ public class Runner implements Runnable {
       i++;
     }
     if (responseCode == 201) {
-      metrics.getSuccessfulRequest().getAndIncrement();
+     // metrics.getSuccessfulRequest().getAndIncrement();
+      successCount++;
     } else {
-      metrics.getUnsuccessfulRequest().getAndIncrement();
+      unsuccessCount++;
+     // metrics.getUnsuccessfulRequest().getAndIncrement();
     }
 
 
@@ -150,9 +167,11 @@ public class Runner implements Runnable {
       i++;
     }
     if (responseCode == 200) {
-      metrics.getSuccessfulRequest().getAndIncrement();
+      //metrics.getSuccessfulRequest().getAndIncrement();
+      successCount++;
     } else {
-      metrics.getUnsuccessfulRequest().getAndIncrement();
+      //metrics.getUnsuccessfulRequest().getAndIncrement();
+      unsuccessCount++;
     }
 
     long endTime = System.currentTimeMillis();
@@ -170,7 +189,8 @@ public class Runner implements Runnable {
 
     long latency = endTime - startTime;
     //System.out.println("latency: " + latency);
-    metrics.getLatency().add(latency);
+    //metrics.getLatency().add(latency);
+    latencyList.add(latency);
     String singleRecord = startTime + "," + responseType + "," + latency + "," + responseCode + "\n";
     //System.out.println("single record: " + singleRecord);
     sb.append(singleRecord);
