@@ -29,7 +29,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/resorts/*")
 public class ResortsServlet extends HttpServlet {
-  private static final Logger LOGGER = LogManager.getLogger(ResortsServlet.class.getName());
+  public static final int RETRY_TIME = 20;
+  public static final Logger LOGGER = LogManager.getLogger(ResortsServlet.class.getName());
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
@@ -76,21 +77,37 @@ public class ResortsServlet extends HttpServlet {
       int year = Integer.parseInt(yearInfo);
 
       Connection conn = null;
-      try {
-        conn = ConnectionPool.getInstance().getConnection();
-        Statement stmt = null;
-        stmt = conn.createStatement();
-        String insertYear = "INSERT INTO season (season_id, resort_id)"
-                + " VALUES (" + yearInfo + "," + resortId + ")";
-        stmt.executeUpdate(insertYear);
-        conn.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-        LOGGER.error(e.getMessage());
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+      Boolean retry = true;
+      int i = 0;
+      while (retry && i < RETRY_TIME) {
+        try {
+          conn = ConnectionPool.getInstance().getConnection();
+          Statement stmt = null;
+          stmt = conn.createStatement();
+          String insertYear = "INSERT INTO season (season_id, resort_id)"
+                  + " VALUES (" + yearInfo + "," + resortId + ")";
+          stmt.executeUpdate(insertYear);
+          conn.close();
+          retry = false;
+          break;
+        } catch (SQLException e) {
+          e.printStackTrace();
+          LOGGER.error(e.getMessage());
+          System.out.println(e.getErrorCode());
+          if (e.getErrorCode() == 1062) {
+            retry = false;
+          } else {
+            i++;
+          }
+        }
       }
+      if (retry) {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+      } else {
+        response.setStatus(HttpServletResponse.SC_CREATED);
+      }
+      conn.close();
 
-      response.setStatus(HttpServletResponse.SC_CREATED);
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
       response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());

@@ -16,6 +16,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,19 +29,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.upic.filter.ResortsStatisticsFilter.RESORT_GET_END_FILE;
-import static com.upic.filter.ResortsStatisticsFilter.RESORT_GET_FILE;
-import static com.upic.filter.ResortsStatisticsFilter.SEASON_GET_END_FILE;
-import static com.upic.filter.ResortsStatisticsFilter.SEASON_GET_FILE;
-import static com.upic.filter.ResortsStatisticsFilter.SEASON_POST_END_FILE;
-import static com.upic.filter.ResortsStatisticsFilter.SEASON_POST_FILE;
-import static com.upic.filter.ResortsStatisticsFilter.STATISTICS_DIR;
-import static com.upic.filter.SkierStatisticsFilter.LIFTDAY_GET_END_FILE;
-import static com.upic.filter.SkierStatisticsFilter.LIFTDAY_GET_FILE;
-import static com.upic.filter.SkierStatisticsFilter.LIFT_GET_END_FILE;
-import static com.upic.filter.SkierStatisticsFilter.LIFT_GET_FILE;
-import static com.upic.filter.SkierStatisticsFilter.LIFT_POST_END_FILE;
-import static com.upic.filter.SkierStatisticsFilter.LIFT_POST_FILE;
+import static com.upic.filter.ResortsStatisticsFilter.RESORT_GET;
+import static com.upic.filter.ResortsStatisticsFilter.SEASON_GET;
+import static com.upic.filter.ResortsStatisticsFilter.SEASON_POST;
+import static com.upic.filter.SkierStatisticsFilter.LIFTDAY_GET;
+import static com.upic.filter.SkierStatisticsFilter.LIFT_GET;
+import static com.upic.filter.SkierStatisticsFilter.LIFT_POST;
+
 
 @WebServlet(urlPatterns = "/statistics/*")
 public class StatisticsServlet extends HttpServlet {
@@ -60,12 +60,13 @@ public class StatisticsServlet extends HttpServlet {
 //    String path = "/Users/yang/Documents/NEU/CS6650/Upic/" + STATISTICS_DIR + "/";
 //    Path currentRelativePath = Paths.get("");
 //    String path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR + "/";
-    String path = "/var/tmp/";
-    String fileName1 = "";
-    String endFileName1 = "";
-    String fileName2 = "";
-    String endFileName2 = "";
-
+//    String path = "/var/tmp/";
+//    String fileName1 = "";
+//    String endFileName1 = "";
+//    String fileName2 = "";
+//    String endFileName2 = "";
+    String type1 = "";
+    String type2 = "";
 
     try {
       response.setContentType("application/json");
@@ -87,34 +88,26 @@ public class StatisticsServlet extends HttpServlet {
 //      String operation = jsonObject.get("operation").getAsString();
 
       if (pathInfo.equals(RESORT)) {
-        fileName1 = RESORT_GET_FILE;
-        endFileName1 = RESORT_GET_END_FILE;
+        type1 = RESORT_GET;
       }
 
       if (pathInfo.equals(SEASON)) {
-        fileName1 = SEASON_GET_FILE;
-        endFileName1 = SEASON_GET_END_FILE;
-
-        fileName2 = SEASON_POST_FILE;
-        endFileName2 = SEASON_POST_END_FILE;
+        type1 = SEASON_GET;
+        type2 = SEASON_POST;
       }
 
       if (pathInfo.equals(LIFT_ALL)) {
-        fileName1 = LIFT_GET_FILE;
-        endFileName1 = LIFT_GET_END_FILE;
+        type1 = LIFT_GET;
       }
 
       if (pathInfo.equals(LIFT)) {
-        fileName1 = LIFTDAY_GET_FILE;
-        endFileName1 = LIFTDAY_GET_END_FILE;
-
-        fileName2 = LIFT_POST_FILE;
-        endFileName2 = LIFT_POST_END_FILE;
+        type1 = LIFTDAY_GET;
+        type2 = LIFT_POST;
       }
 
       JSONObject obj = new JSONObject();
 
-      long[] result1 = getStatistics(path + endFileName1, path + fileName1);
+      long[] result1 = getStatistics(type1);
       JSONObject obj1 = new JSONObject();
       obj1.put("URL", pathInfo);
       obj1.put("operation", GET);
@@ -125,8 +118,8 @@ public class StatisticsServlet extends HttpServlet {
       jsonArray.put(obj1);
 
 
-      if (endFileName2.length() > 0) {
-        long[] result2 = getStatistics(path + endFileName2, path + fileName2);
+      if (type2.length() > 0) {
+        long[] result2 = getStatistics(type2);
         JSONObject obj2 = new JSONObject();
         obj2.put("URL", pathInfo);
         obj2.put("operation", POST);
@@ -144,42 +137,70 @@ public class StatisticsServlet extends HttpServlet {
     }
   }
 
-  private long[] getStatistics(String endFileName, String fileName) {
+  private long[] getStatistics(String typeVal) {
     long max = -1;
     long total = 0;
     int count = 0;
 
-    String line = "";
-    long record = 0;
-    try (BufferedReader br = new BufferedReader(new FileReader(endFileName))) {
+//    String line = "";
+//    long record = 0;
 
-      while ((line = br.readLine()) != null) {
+    Connection conn = null;
+    try {
 
-        record = Long.parseLong(line);
-        total += record;
-        max = max < record? record : max;
+      conn = ConnectionPool.getInstance().getConnection();
+      Statement stmt = null;
+      stmt = conn.createStatement();
+      String getStat = "SELECT * FROM statistics" +
+              " WHERE" +
+              " url_type = '" + typeVal + "';";
+      ResultSet rs = stmt.executeQuery(getStat);
+
+     // List<Long> list = new ArrayList<>();
+      while (rs.next()) {
+        long cur = Long.parseLong(rs.getString("latency"));
+        max = Math.max(cur, max);
+        total += cur;
         count += 1;
-
       }
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-
-      while ((line = br.readLine()) != null) {
-        record = Long.parseLong(line);
-        total += record;
-        max = max < record? record : max;
-        count += 1;
-
-      }
-
-    } catch (IOException e) {
+      String deleteStat = "DELETE FROM statistics" +
+              " WHERE" +
+              " url_type = '" + typeVal + "';";
+      stmt.executeUpdate(deleteStat);
+      conn.close();
+    } catch (SQLException e) {
       e.printStackTrace();
     }
     long mean = count > 0? total / count : -1;
     return new long[]{mean, max};
+
+//    try (BufferedReader br = new BufferedReader(new FileReader(endFileName))) {
+//
+//      while ((line = br.readLine()) != null) {
+//
+//        record = Long.parseLong(line);
+//        total += record;
+//        max = max < record? record : max;
+//        count += 1;
+//
+//      }
+//
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//
+//    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+//
+//      while ((line = br.readLine()) != null) {
+//        record = Long.parseLong(line);
+//        total += record;
+//        max = max < record? record : max;
+//        count += 1;
+//
+//      }
+//
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
   }
 }

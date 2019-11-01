@@ -26,7 +26,7 @@ public class Runner implements Runnable {
   private int unsuccessCount;
   private List<Long> latencyList;
 
-  public static final int RETRY_TIMES = 10;
+  public static final int RETRY_TIMES = 20;
 
 
   public Runner(String serverAddress, int[] timeRange, int[] skierRange, CountDownLatch phaseLatch,

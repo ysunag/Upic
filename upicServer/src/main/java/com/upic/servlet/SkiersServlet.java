@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.upic.servlet.ResortsServlet.RETRY_TIME;
+
 @WebServlet(urlPatterns = "/skiers/*")
 public class SkiersServlet extends HttpServlet {
   private static final Logger LOGGER = LogManager.getLogger(ResortsServlet.class.getName());
@@ -92,24 +94,41 @@ public class SkiersServlet extends HttpServlet {
         }
         int liftId = Integer.parseInt(liftIdInfo);
 
-        Connection conn = null;
-        try {
-          conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt = null;
-          stmt = conn.createStatement();
-          String insertRecord = "INSERT INTO lift (resort_id, season_id, day_id, skier_id, lift_time, lift_id)"
-                  + "VALUES (" + resortId + "," + seasonId + ","  + dayId
-                  + "," + skierId + "," + time + "," + liftId + ")";
-          stmt.executeUpdate(insertRecord);
-          conn.close();
-        } catch (SQLException e) {
-          e.printStackTrace();
-          LOGGER.error(e.getMessage());
-          response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-        }
 
-        response.setStatus(HttpServletResponse.SC_CREATED);
-        out.write("{\"message\":\"create lift request received\"}");
+        Boolean retry = true;
+        int i = 0;
+
+        Connection conn = null;
+
+        while (retry && i < RETRY_TIME) {
+          try {
+            conn = ConnectionPool.getInstance().getConnection();
+            Statement stmt = null;
+            stmt = conn.createStatement();
+            String insertRecord = "INSERT INTO lift (resort_id, season_id, day_id, skier_id, lift_time, lift_id)"
+                    + "VALUES (" + resortId + "," + seasonId + "," + dayId
+                    + "," + skierId + "," + time + "," + liftId + ")";
+            stmt.executeUpdate(insertRecord);
+            conn.close();
+            retry = false;
+            break;
+          } catch (SQLException e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            System.out.println(e.getErrorCode());
+          if (e.getErrorCode() == 1062) {
+            retry = false;
+          } else {
+              i++;
+          }
+          }
+        }
+        if (retry) {
+          response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } else {
+          response.setStatus(HttpServletResponse.SC_CREATED);
+          out.write("{\"message\":\"create lift request received\"}");
+        }
         conn.close();
         return;
       }
