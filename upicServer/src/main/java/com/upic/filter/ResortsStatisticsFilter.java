@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -106,8 +107,9 @@ public class ResortsStatisticsFilter implements Filter {
           conn = ConnectionPool.getInstance().getConnection();
           Statement stmt = null;
           stmt = conn.createStatement();
-          String insertStat = "INSERT INTO statistics (latency, url_type)"
-          + " VALUES (" + time + "," + urlType + ")";
+          int random = ThreadLocalRandom.current().nextInt(500000);
+          String insertStat = "INSERT INTO statistics (latency, url_type, id)"
+          + " VALUES (" + time + "," + urlType + "," + random + ")";
           stmt.executeUpdate(insertStat);
           conn.close();
         } catch (SQLException e) {

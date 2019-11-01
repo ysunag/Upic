@@ -23162,7 +23162,6 @@ lift_time</ColNames>
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="4228" parent="634" name="url_type">
@@ -23179,7 +23178,9 @@ lift_time</ColNames>
     </column>
     <key id="4230" parent="634" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>url_type
+latency
+id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>
