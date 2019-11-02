@@ -27,8 +27,8 @@
       <file leaf-file-name="Runner.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/io/swagger/client/runner/Runner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="895">
-              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="352">
+              <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,8 +39,8 @@
       <file leaf-file-name="ApiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/io/swagger/client/ApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="821" column="0" lean-forward="false" selection-start-line="821" selection-start-column="0" selection-end-line="821" selection-end-column="0" />
+            <state relative-caret-position="3388">
+              <caret line="453" column="35" lean-forward="false" selection-start-line="453" selection-start-column="21" selection-end-line="453" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -63,6 +63,7 @@
       <find>retry</find>
       <find>getRecord</find>
       <find>sb</find>
+      <find>timeou</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -376,12 +377,12 @@
       <workItem from="1571380454831" duration="5003000" />
       <workItem from="1571440282825" duration="18117000" />
       <workItem from="1571988227893" duration="13911000" />
-      <workItem from="1572590907877" duration="4943000" />
+      <workItem from="1572590907877" duration="15733000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94124000" />
+    <option name="totallyTimeSpent" value="104914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -395,7 +396,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50544137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38814995" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4292624" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -870,16 +871,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/swagger/client/ApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="821" column="0" lean-forward="false" selection-start-line="821" selection-start-column="0" selection-end-line="821" selection-end-column="0" />
+        <state relative-caret-position="3388">
+          <caret line="453" column="35" lean-forward="false" selection-start-line="453" selection-start-column="21" selection-end-line="453" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/swagger/client/runner/Runner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="895">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="352">
+          <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

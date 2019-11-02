@@ -107,15 +107,17 @@ public class ResortsStatisticsFilter implements Filter {
           conn = ConnectionPool.getInstance().getConnection();
           Statement stmt = null;
           stmt = conn.createStatement();
-          int random = ThreadLocalRandom.current().nextInt(500000);
+          int random = ThreadLocalRandom.current().nextInt(500);
           String insertStat = "INSERT INTO statistics (latency, url_type, id)"
-          + " VALUES (" + time + "," + urlType + "," + random + ")";
+          + " VALUES ('" + time + "','" + urlType + "','" + random + "')";
           stmt.executeUpdate(insertStat);
+          stmt.close();
           conn.close();
         } catch (SQLException e) {
           e.printStackTrace();
           LOGGER.error(e.getMessage());
         }
+
   }
 
   @Override

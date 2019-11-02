@@ -22,7 +22,8 @@ public class ConnectionPool {
     }
     basicDataSource = new BasicDataSource();
 //    basicDataSource.setUrl("jdbc:mysql://localhost:3306/upic_schema?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-    basicDataSource.setUrl("jdbc:mysql://database-1.cgc3osq6curw.us-west-2.rds.amazonaws.com:3306/upic?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+//    basicDataSource.setUrl("jdbc:mysql://database-1.cgc3osq6curw.us-west-2.rds.amazonaws.com:3306/upic?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+    basicDataSource.setUrl("jdbc:mysql://database-2.cgc3osq6curw.us-west-2.rds.amazonaws.com:3306/upic?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 //    basicDataSource.setUsername("root");
 //    basicDataSource.setPassword("rootroot");
     basicDataSource.setUsername("admin");

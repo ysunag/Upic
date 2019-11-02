@@ -1,10 +1,13 @@
 package io.swagger.client.runner;
 
+import com.squareup.okhttp.OkHttpClient;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 import io.swagger.client.ApiClient;
 import io.swagger.client.ApiException;
@@ -42,6 +45,13 @@ public class Runner implements Runnable {
     apiInstance = new SkiersApi();
     ApiClient client = apiInstance.getApiClient();
 
+    OkHttpClient httpClient = client.getHttpClient();
+    httpClient.setConnectTimeout(200, TimeUnit.SECONDS);
+    httpClient.setReadTimeout(200, TimeUnit.SECONDS);
+    httpClient.setWriteTimeout(200, TimeUnit.SECONDS);
+    client.setHttpClient(httpClient);
+    apiInstance.setApiClient(client);
+
     successCount = 0;
     unsuccessCount = 0;
     latencyList = new ArrayList<>();
@@ -55,6 +65,7 @@ public class Runner implements Runnable {
     for (int i = 0; i < numOfRequests; i++) {
       int[] ids = null;
       try {
+        makePostRequest(sb);
         ids = makePostRequest(sb);
         if (issueGetRequest && ids != null) {
           makeGetRequest(sb, ids);
@@ -102,7 +113,8 @@ public class Runner implements Runnable {
 
     int responseCode = 0;
     int i = 0;
-    while (i < RETRY_TIMES && responseCode != 201) {
+    while (responseCode != 201) {
+//    while (i < RETRY_TIMES && responseCode != 201) {
       try {
         ids = generateIds();
         int skierId = ids[0];
@@ -155,7 +167,8 @@ public class Runner implements Runnable {
     int responseCode = 0;
     int res = 0;
     int i = 0;
-    while (i < RETRY_TIMES && responseCode != 200 && res <= 0) {
+//    while (i < RETRY_TIMES && responseCode != 200 && res <= 0) {
+      while (responseCode != 200 && res <= 0) {
       try {
         res = apiInstance.getSkierDayVertical(resortID, seasonID, dayID, skierId);
         responseCode = 200;

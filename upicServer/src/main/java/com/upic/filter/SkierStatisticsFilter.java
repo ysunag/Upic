@@ -115,10 +115,13 @@ public class SkierStatisticsFilter implements Filter {
       conn = ConnectionPool.getInstance().getConnection();
       Statement stmt = null;
       stmt = conn.createStatement();
-      int random = ThreadLocalRandom.current().nextInt(500000);
-      String insertStat = "INSERT INTO statistics (latency, url_type, id)"
-              + " VALUES (" + time + ",'" + urlType + "','" + random + "')";
+//      int random = ThreadLocalRandom.current().nextInt(500);
+//      String insertStat = "INSERT INTO statistics (latency, url_type, id)"
+//              + " VALUES ('" + time + "','" + urlType + "','" + random + "')";
+      String insertStat = "INSERT INTO statistics (latency, url_type)"
+              + " VALUES ('" + time + "','" + urlType + "')";
       stmt.executeUpdate(insertStat);
+      stmt.close();
       conn.close();
     } catch (SQLException e) {
       e.printStackTrace();

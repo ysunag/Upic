@@ -109,18 +109,19 @@ public class SkiersServlet extends HttpServlet {
                     + "VALUES (" + resortId + "," + seasonId + "," + dayId
                     + "," + skierId + "," + time + "," + liftId + ")";
             stmt.executeUpdate(insertRecord);
-            conn.close();
+            stmt.close();
             retry = false;
-            break;
           } catch (SQLException e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
             System.out.println(e.getErrorCode());
-          if (e.getErrorCode() == 1062) {
-            retry = false;
-          } else {
-              i++;
-          }
+            if (e.getErrorCode() == 1062) {
+              retry = false;
+            } else {
+                i++;
+            }
+          } finally {
+            conn.close();
           }
         }
         if (retry) {
@@ -129,7 +130,6 @@ public class SkiersServlet extends HttpServlet {
           response.setStatus(HttpServletResponse.SC_CREATED);
           out.write("{\"message\":\"create lift request received\"}");
         }
-        conn.close();
         return;
       }
     } catch (Exception e) {
@@ -202,11 +202,13 @@ public class SkiersServlet extends HttpServlet {
             responseJson.put("totalVert", totalVert);
             response.setStatus(HttpServletResponse.SC_OK);
             out.write(responseJson.toString());
-            conn.close();
-
+            stmt.close();
           } catch (SQLException e) {
             e.printStackTrace();
+          } finally {
+            conn.close();
           }
+
           return;
         }
 
@@ -233,8 +235,7 @@ public class SkiersServlet extends HttpServlet {
         try {
           int totalDayVert = 0;
           conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt = null;
-          stmt = conn.createStatement();
+          Statement stmt  = conn.createStatement();
           String getStep = "SELECT" +
                   " lift_id" +
                   " FROM" +
@@ -256,10 +257,12 @@ public class SkiersServlet extends HttpServlet {
          // System.out.println("day vert is " + totalDayVert);
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(Integer.toString(totalDayVert));
-          conn.close();
+          stmt.close();
           return;
         } catch (SQLException e) {
           e.printStackTrace();
+        } finally {
+          conn.close();
         }
       }
     } catch (Exception e) {

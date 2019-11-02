@@ -87,9 +87,8 @@ public class ResortsServlet extends HttpServlet {
           String insertYear = "INSERT INTO season (season_id, resort_id)"
                   + " VALUES (" + yearInfo + "," + resortId + ")";
           stmt.executeUpdate(insertYear);
-          conn.close();
+          stmt.close();
           retry = false;
-          break;
         } catch (SQLException e) {
           e.printStackTrace();
           LOGGER.error(e.getMessage());
@@ -99,6 +98,8 @@ public class ResortsServlet extends HttpServlet {
           } else {
             i++;
           }
+        } finally {
+          conn.close();
         }
       }
       if (retry) {
@@ -106,7 +107,6 @@ public class ResortsServlet extends HttpServlet {
       } else {
         response.setStatus(HttpServletResponse.SC_CREATED);
       }
-      conn.close();
 
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
@@ -144,6 +144,7 @@ public class ResortsServlet extends HttpServlet {
           obj.put("resorts", jsonArray);
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(obj.toString());
+          stmt.close();
           conn.close();
 
         } catch (SQLException e) {
@@ -188,6 +189,7 @@ public class ResortsServlet extends HttpServlet {
           obj.put("seasons", list);
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(obj.toString());
+          stmt.close();
           conn.close();
         } catch (SQLException e) {
           e.printStackTrace();
