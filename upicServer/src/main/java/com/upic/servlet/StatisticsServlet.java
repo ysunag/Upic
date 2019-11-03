@@ -163,10 +163,11 @@ public class StatisticsServlet extends HttpServlet {
         total += cur;
         count += 1;
       }
-      String deleteStat = "DELETE FROM statistics" +
-              " WHERE" +
-              " url_type = '" + typeVal + "';";
-      stmt.executeUpdate(deleteStat);
+//      String deleteStat = "DELETE FROM statistics" +
+//              " WHERE" +
+//              " url_type = '" + typeVal + "';";
+//      stmt.executeUpdate(deleteStat);
+      stmt.close();
       conn.close();
     } catch (SQLException e) {
       e.printStackTrace();

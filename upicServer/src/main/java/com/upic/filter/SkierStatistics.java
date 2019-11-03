@@ -5,26 +5,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SkierStatistics {
-  private List<Long> liftGetRecord;
-  private List<Long> liftDayGetRecord;
-  private List<Long> liftPostRecord;
+  private List<String> liftGetRecord;
+  private List<String> liftDayGetRecord;
+  private List<String> liftPostRecord;
+//  private List<String> records;
 
 
   public SkierStatistics() {
-    this.liftGetRecord = Collections.synchronizedList(new LinkedList<Long>());
-    this.liftDayGetRecord = Collections.synchronizedList(new LinkedList<Long>());
-    this.liftPostRecord = Collections.synchronizedList(new LinkedList<Long>());
+    this.liftGetRecord = Collections.synchronizedList(new LinkedList<String>());
+    this.liftDayGetRecord = Collections.synchronizedList(new LinkedList<String>());
+    this.liftPostRecord = Collections.synchronizedList(new LinkedList<String>());
+//    this.records = Collections.synchronizedList(new LinkedList<String>());
   }
 
-  public List<Long> getLiftGetRecord() {
+  public List<String> getLiftGetRecord() {
     return liftGetRecord;
   }
 
-  public List<Long> getLiftDayGetRecord() {
+  public List<String> getLiftDayGetRecord() {
     return liftDayGetRecord;
   }
 
-  public List<Long> getLiftPostRecord() {
+  public List<String> getLiftPostRecord() {
     return liftPostRecord;
   }
+//   public List<String> getRecords() {
+//  return records;
+//}
 }

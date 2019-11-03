@@ -26,9 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("/ResortsFilter")
 public class ResortsStatisticsFilter implements Filter {
-//  public static ResortsStatistics stats;
-//  public static String path;
-//  public static final int RECORD_BOUND = 500;
+  public static ResortsStatistics stats;
+  //  public static String path;
+  public static final int RECORD_BOUND = 499;
 
 //  public static final String STATISTICS_DIR = "statistics";
   public static final String RESORT_GET = "resort_get";
@@ -102,21 +102,41 @@ public class ResortsStatisticsFilter implements Filter {
 //        stats.getSeasonsPostRecord().clear();
 //      }
     }
-        Connection conn = null;
-        try {
-          conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt = null;
-          stmt = conn.createStatement();
-          int random = ThreadLocalRandom.current().nextInt(500);
-          String insertStat = "INSERT INTO statistics (latency, url_type, id)"
-          + " VALUES ('" + time + "','" + urlType + "','" + random + "')";
-          stmt.executeUpdate(insertStat);
-          stmt.close();
-          conn.close();
-        } catch (SQLException e) {
-          e.printStackTrace();
-          LOGGER.error(e.getMessage());
-        }
+
+    int size = stats.getRecords().size();
+
+    if (size == RECORD_BOUND) {
+
+      StringBuilder sb = new StringBuilder();
+      sb.append("INSERT INTO statistics (latency, url_type)"
+              + " VALUES ");
+      for (String str : stats.getRecords()) {
+        sb.append(str);
+      }
+      sb.append("('" + time + "','" + urlType + "');");
+
+      Connection conn = null;
+      try {
+        conn = ConnectionPool.getInstance().getConnection();
+        Statement stmt = null;
+        stmt = conn.createStatement();
+//      int random = ThreadLocalRandom.current().nextInt(500);
+//      String insertStat = "INSERT INTO statistics (latency, url_type, id)"
+//              + " VALUES ('" + time + "','" + urlType + "','" + random + "')";
+//        String insertStat = "INSERT INTO statistics (latency, url_type)"
+//                + " VALUES ('" + time + "','" + urlType + "')";
+        stmt.executeUpdate(sb.toString());
+        stats.getRecords().clear();
+        stmt.close();
+        conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+        LOGGER.error(e.getMessage());
+      }
+    } else {
+      stats.getRecords().add("('" + time + "','" + urlType + "'),");
+    }
+
 
   }
 
@@ -168,7 +188,7 @@ public class ResortsStatisticsFilter implements Filter {
 
   @Override
   public void init(FilterConfig fc) throws ServletException {
-//    stats = new ResortsStatistics();
+    stats = new ResortsStatistics();
 //    Path currentRelativePath = Paths.get("");
 //    path = currentRelativePath.toAbsolutePath().getParent().toString() + "/" + STATISTICS_DIR;
 //    new File(path).mkdirs();
