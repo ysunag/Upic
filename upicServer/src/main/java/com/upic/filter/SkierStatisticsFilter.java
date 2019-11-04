@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.Filter;
@@ -51,12 +50,9 @@ public class SkierStatisticsFilter implements Filter {
     String[] pathParts = hsr.getPathInfo().split("/");
     System.out.println("hsr.getMethod() is " + hsr.getMethod());
 
-    List<String> list;
-
     if (pathParts.length == 3) {
       //get list of lifts request
       urlType = LIFT_GET;
-      list = stats.getLiftGetRecord();
 //      stats.getLiftGetRecord().add(time);
 //      System.out.println("stats.getLiftGetRecord().size(): " + stats.getLiftGetRecord().size());
 //      if (stats.getLiftGetRecord().size() >= RECORD_BOUND) {
@@ -72,11 +68,9 @@ public class SkierStatisticsFilter implements Filter {
 //        }
 //        stats.getLiftGetRecord().clear();
 //      }
-    }
-    else if ("GET".equals(hsr.getMethod())) {
+    } else if ("GET".equals(hsr.getMethod())) {
       //get list of lifts on a specific day
       urlType = LIFTDAY_GET;
-      list = stats.getLiftDayGetRecord();
 //      stats.getLiftDayGetRecord().add(time);
 //      System.out.println("stats.getLiftDayGetRecord().size(): " + stats.getLiftDayGetRecord().size());
 //      if (stats.getLiftDayGetRecord().size() >= RECORD_BOUND) {
@@ -96,7 +90,6 @@ public class SkierStatisticsFilter implements Filter {
     } else {
       //add season to specific resort
       urlType = LIFT_POST;
-      list = stats.getLiftPostRecord();
 //      stats.getLiftPostRecord().add(time);
 //      System.out.println("stats.getLiftPostRecord().size(): " + stats.getLiftPostRecord().size());
 //      if (stats.getLiftPostRecord().size() >= RECORD_BOUND) {
@@ -118,14 +111,14 @@ public class SkierStatisticsFilter implements Filter {
     }
 
 
-    int size = list.size();
+    int size = stats.getRecords().size();
 
     if (size == RECORD_BOUND) {
 
       StringBuilder sb = new StringBuilder();
       sb.append("INSERT INTO statistics (latency, url_type)"
               + " VALUES ");
-      for (String str : list) {
+      for (String str : stats.getRecords()) {
         sb.append(str);
       }
       sb.append("('" + time + "','" + urlType + "');");
@@ -140,14 +133,8 @@ public class SkierStatisticsFilter implements Filter {
 //              + " VALUES ('" + time + "','" + urlType + "','" + random + "')";
 //        String insertStat = "INSERT INTO statistics (latency, url_type)"
 //                + " VALUES ('" + time + "','" + urlType + "')";
-        //todo
-        String deleteStat = "DELETE FROM statistics" +
-                " WHERE" +
-                " url_type = '" + urlType + "';";
-        stmt.executeUpdate(deleteStat);
-
         stmt.executeUpdate(sb.toString());
-        list.clear();
+        stats.getRecords().clear();
         stmt.close();
         conn.close();
       } catch (SQLException e) {
@@ -155,7 +142,7 @@ public class SkierStatisticsFilter implements Filter {
         LOGGER.error(e.getMessage());
       }
     } else {
-      list.add("('" + time + "','" + urlType + "'),");
+      stats.getRecords().add("('" + time + "','" + urlType + "'),");
     }
 
   }

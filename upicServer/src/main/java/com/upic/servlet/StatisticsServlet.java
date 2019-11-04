@@ -151,9 +151,11 @@ public class StatisticsServlet extends HttpServlet {
       conn = ConnectionPool.getInstance().getConnection();
       Statement stmt = null;
       stmt = conn.createStatement();
-      String getStat = "SELECT * FROM statistics" +
-              " WHERE" +
-              " url_type = '" + typeVal + "';";
+//      String getStat = "SELECT * FROM statistics" +
+//              " WHERE" +
+//              " url_type = '" + typeVal + "';";
+      String getStat = "SELECT * FROM ( SELECT * FROM statistics ORDER BY id DESC LIMIT 1000) AS t " +
+              "WHERE t.url_type = '" + typeVal + "';";
       ResultSet rs = stmt.executeQuery(getStat);
 
      // List<Long> list = new ArrayList<>();
@@ -163,10 +165,10 @@ public class StatisticsServlet extends HttpServlet {
         total += cur;
         count += 1;
       }
-//      String deleteStat = "DELETE FROM statistics" +
-//              " WHERE" +
-//              " url_type = '" + typeVal + "';";
-//      stmt.executeUpdate(deleteStat);
+      String deleteStat = "DELETE FROM statistics" +
+              " WHERE" +
+              " url_type = '" + typeVal + "';";
+      stmt.executeUpdate(deleteStat);
       stmt.close();
       conn.close();
     } catch (SQLException e) {
