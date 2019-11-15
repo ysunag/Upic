@@ -1,0 +1,8 @@
+com/upic/filter/ResortsStatistics.class
+com/upic/filter/SkierStatistics.class
+com/upic/filter/ResortsStatisticsFilter.class
+com/upic/servlet/ResortsServlet.class
+com/upic/servlet/ConnectionPoolContextListener.class
+com/upic/servlet/StatisticsServlet.class
+com/upic/servlet/SkiersServlet.class
+com/upic/filter/SkierStatisticsFilter.class

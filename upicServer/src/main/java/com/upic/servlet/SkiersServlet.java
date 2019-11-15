@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 import static com.upic.servlet.ResortsServlet.RETRY_TIME;
 
@@ -33,7 +35,7 @@ public class SkiersServlet extends HttpServlet {
   private static final String SKIERS = "skiers";
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
     try {
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
@@ -72,14 +74,11 @@ public class SkiersServlet extends HttpServlet {
 
 
         String body = IOUtils.toString(request.getReader());
-        //System.out.println(body);
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(body);
         JsonObject jsonObject = element.getAsJsonObject();
         String timeInfo = jsonObject.get("time").getAsString();
         String liftIdInfo = jsonObject.get("liftID").getAsString();
-//        System.out.println(timeInfo);
-//        System.out.println(liftIdInfo);
 
         if (!isInteger(timeInfo, 10)) {
           response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -102,12 +101,14 @@ public class SkiersServlet extends HttpServlet {
 
         while (retry && i < RETRY_TIME) {
           try {
-            conn = ConnectionPool.getInstance().getConnection();
-            Statement stmt = null;
-            stmt = conn.createStatement();
+//            conn = ConnectionPool.getInstance().getConnection();
+            conn = pool.getConnection();
+//            Statement stmt = null;
+//            stmt = conn.createStatement();
             String insertRecord = "INSERT INTO lift (resort_id, season_id, day_id, skier_id, lift_time, lift_id)"
                     + "VALUES (" + resortId + "," + seasonId + "," + dayId
                     + "," + skierId + "," + time + "," + liftId + ")";
+            PreparedStatement stmt = conn.prepareStatement(insertRecord);
             stmt.executeUpdate(insertRecord);
             stmt.close();
             retry = false;
@@ -139,7 +140,7 @@ public class SkiersServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
     try {
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
@@ -176,9 +177,10 @@ public class SkiersServlet extends HttpServlet {
           Connection conn = null;
           try {
             int totalVert = 0;
-            conn = ConnectionPool.getInstance().getConnection();
-            Statement stmt = null;
-            stmt = conn.createStatement();
+//            conn = ConnectionPool.getInstance().getConnection();
+            conn = pool.getConnection();
+//            Statement stmt = null;
+//            stmt = conn.createStatement();
             String getStep = "SELECT" +
                     " lift_id" +
                     " FROM" +
@@ -186,6 +188,7 @@ public class SkiersServlet extends HttpServlet {
                     " WHERE" +
                     " resort_id = " + resortId + " AND season_id = "
                     + seasonId + " AND skier_id = " + skierId + ";";
+            PreparedStatement stmt = conn.prepareStatement(getStep);
             ResultSet rs = stmt.executeQuery(getStep);
             if (rs.next()) {
               totalVert = 1;
@@ -234,8 +237,9 @@ public class SkiersServlet extends HttpServlet {
         Connection conn = null;
         try {
           int totalDayVert = 0;
-          conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt  = conn.createStatement();
+          conn = pool.getConnection();
+//          conn = ConnectionPool.getInstance().getConnection();
+//          Statement stmt  = conn.createStatement();
           String getStep = "SELECT" +
                   " lift_id" +
                   " FROM" +
@@ -243,6 +247,7 @@ public class SkiersServlet extends HttpServlet {
                   " WHERE" +
                   " resort_id = " + resortId + " AND season_id = "
                   + seasonId + " AND skier_id = " + skierId + " AND day_id = " + dayId + ";";
+          PreparedStatement stmt = conn.prepareStatement(getStep);
           ResultSet rs = stmt.executeQuery(getStep);
           if (rs.next()) {
             totalDayVert = 1;
@@ -254,7 +259,7 @@ public class SkiersServlet extends HttpServlet {
           while(rs.next()){
             totalDayVert += 1;
           }
-         // System.out.println("day vert is " + totalDayVert);
+          System.out.println("day vert is " + totalDayVert);
           response.setStatus(HttpServletResponse.SC_OK);
           out.write(Integer.toString(totalDayVert));
           stmt.close();

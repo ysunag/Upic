@@ -1,0 +1,78 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>ResortsServlet</servlet-name>
+    <servlet-class>com.upic.servlet.ResortsServlet</servlet-class>
+  </servlet>
+  <!-- JSPC servlet mappings start -->
+
+    <servlet>
+        <servlet-name>org.apache.jsp.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.index_jsp</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+<!-- JSPC servlet mappings end -->
+
+<servlet-mapping>
+    <servlet-name>ResortsServlet</servlet-name>
+    <url-pattern>/resorts/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SkiersServlet</servlet-name>
+    <servlet-class>com.upic.servlet.SkiersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SkiersServlet</servlet-name>
+    <url-pattern>/skiers/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>StatisticsServlet</servlet-name>
+    <servlet-class>com.upic.servlet.StatisticsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatisticsServlet</servlet-name>
+    <url-pattern>/statistics/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>ResortsFilter</filter-name>
+    <filter-class>com.upic.filter.ResortsStatisticsFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>SkiersFilter</filter-name>
+    <filter-class>com.upic.filter.SkierStatisticsFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>ResortsFilter</filter-name>
+    <url-pattern>/resorts/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>SkiersFilter</filter-name>
+    <url-pattern>/skiers/*</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>
+      com.upic.servlet.ConnectionPoolContextListener
+    </listener-class>
+  </listener>
+
+</web-app>

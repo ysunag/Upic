@@ -1,0 +1,63 @@
+runtime: java8
+inbound_services:
+- warmup
+derived_file_type:
+- java_precompiled
+threadsafe: True
+auto_id_policy: default
+env_variables:
+  'DEFAULT_ENCODING': 'UTF-8'
+  'DB_PASS': 'adminadmin'
+  'DB_USER': 'root'
+  'CLOUD_SQL_CONNECTION_NAME': 'winter-bloom-259101:us-west2:upic'
+  'DB_NAME': 'upic'
+api_version: 'user_defined'
+handlers:
+- url: /
+  script: unused
+  login: optional
+  secure: optional
+- url: /_ah/.*
+  script: unused
+  login: optional
+  secure: optional
+- url: /statistics
+  script: unused
+  login: optional
+  secure: optional
+- url: /statistics/.*
+  script: unused
+  login: optional
+  secure: optional
+- url: /skiers
+  script: unused
+  login: optional
+  secure: optional
+- url: /skiers/.*
+  script: unused
+  login: optional
+  secure: optional
+- url: /resorts
+  script: unused
+  login: optional
+  secure: optional
+- url: .*\.jsp
+  script: unused
+  login: optional
+  secure: optional
+- url: /.*/
+  script: unused
+  login: optional
+  secure: optional
+- url: /resorts/.*
+  script: unused
+  login: optional
+  secure: optional
+- url: /SkiersFilter
+  script: unused
+  login: optional
+  secure: optional
+- url: /ResortsFilter
+  script: unused
+  login: optional
+  secure: optional

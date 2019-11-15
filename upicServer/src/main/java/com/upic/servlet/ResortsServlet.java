@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javax.sql.DataSource;
+
 
 @WebServlet(urlPatterns = "/resorts/*")
 public class ResortsServlet extends HttpServlet {
@@ -33,6 +36,9 @@ public class ResortsServlet extends HttpServlet {
   public static final Logger LOGGER = LogManager.getLogger(ResortsServlet.class.getName());
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
+
     try {
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
@@ -81,13 +87,16 @@ public class ResortsServlet extends HttpServlet {
       int i = 0;
       while (retry && i < RETRY_TIME) {
         try {
-          conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt = null;
-          stmt = conn.createStatement();
+//          conn = ConnectionPool.getInstance().getConnection();
+          conn = pool.getConnection();
+//          Statement stmt = null;
+//          stmt = conn.createStatement();
           String insertYear = "INSERT INTO season (season_id, resort_id)"
                   + " VALUES (" + yearInfo + "," + resortId + ")";
-          stmt.executeUpdate(insertYear);
-          stmt.close();
+//          stmt.executeUpdate(insertYear);
+//          stmt.close();
+          PreparedStatement stmt = conn.prepareStatement(insertYear);
+          stmt.executeUpdate();
           retry = false;
         } catch (SQLException e) {
           e.printStackTrace();
@@ -115,7 +124,7 @@ public class ResortsServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
     try {
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
@@ -126,11 +135,12 @@ public class ResortsServlet extends HttpServlet {
 
         Connection conn = null;
         try {
-
-          conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt = null;
-          stmt = conn.createStatement();
+          conn = pool.getConnection();
+//          conn = ConnectionPool.getInstance().getConnection();
+//          Statement stmt = null;
+//          stmt = conn.createStatement();
           String getStep = "SELECT * FROM resort;";
+          PreparedStatement stmt = conn.prepareStatement(getStep);
           ResultSet rs = stmt.executeQuery(getStep);
           JSONArray jsonArray = new JSONArray();
 
@@ -169,17 +179,19 @@ public class ResortsServlet extends HttpServlet {
 
         Connection conn = null;
         try {
-
-          conn = ConnectionPool.getInstance().getConnection();
-          Statement stmt = null;
-          stmt = conn.createStatement();
+          conn = pool.getConnection();
+//          conn = ConnectionPool.getInstance().getConnection();
+//          Statement stmt = null;
+//          stmt = conn.createStatement();
           String getSeasons = "SELECT DISTINCT" +
                   " season_id" +
                   " FROM" +
                   " season" +
                   " WHERE" +
                   " resort_id = " + resortId + ";";
+          PreparedStatement stmt = conn.prepareStatement(getSeasons);
           ResultSet rs = stmt.executeQuery(getSeasons);
+
           JSONObject obj = new JSONObject();
 
           List<String> list = new ArrayList<>();

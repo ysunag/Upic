@@ -19,6 +19,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -26,6 +27,28 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
+
+
+    <dependency>
+      <groupId>com.google.cloud.sql</groupId>
+      <artifactId>mysql-socket-factory</artifactId>
+      <version>1.0.15</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.api-client</groupId>
+      <artifactId>google-api-client-appengine</artifactId>
+      <version>1.30.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.appengine</groupId>
+      <artifactId>appengine-api-1.0-sdk</artifactId>
+      <version>1.9.76</version>
+    </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -70,42 +93,90 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.17</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>3.4.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.cloud.sql</groupId>
+      <artifactId>mysql-socket-factory-connector-j-8</artifactId>
+      <version>1.0.15</version>
+    </dependency>
+
+
   </dependencies>
 
 
 
   <build>
     <finalName>upic-server</finalName>
+    <!--<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>-->
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <!--<plugins>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-clean-plugin</artifactId>-->
+          <!--<version>3.1.0</version>-->
+        <!--</plugin>-->
+        <!--&lt;!&ndash; see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging &ndash;&gt;-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-resources-plugin</artifactId>-->
+          <!--<version>3.0.2</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-compiler-plugin</artifactId>-->
+          <!--<version>3.8.0</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-surefire-plugin</artifactId>-->
+          <!--<version>2.22.1</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-war-plugin</artifactId>-->
+          <!--<version>3.2.2</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-install-plugin</artifactId>-->
+          <!--<version>2.5.2</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-deploy-plugin</artifactId>-->
+          <!--<version>2.8.2</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<groupId>com.google.cloud.tools</groupId>-->
+          <!--<artifactId>appengine-maven-plugin</artifactId>-->
+          <!--<version>2.0.0</version>-->
+        <!--</plugin>-->
+      <!--</plugins>-->
       <plugins>
         <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
-        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.2</version>
+          <version>3.0.0</version>
+          <configuration>
+            <archiveClasses>true</archiveClasses>
+            <webResources>
+              <!-- in order to interpolate version from pom into appengine-web.xml -->
+              <resource>
+                <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                <filtering>true</filtering>
+                <targetPath>WEB-INF</targetPath>
+              </resource>
+            </webResources>
+          </configuration>
         </plugin>
         <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <groupId>com.google.cloud.tools</groupId>
+          <artifactId>appengine-maven-plugin</artifactId>
+          <!-- Must specify deploy projectId and version -->
+          <configuration>
+            <deploy.projectId>winter-bloom-259101</deploy.projectId>
+            <deploy.version>test</deploy.version>
+          </configuration>
+          <version>2.2.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
