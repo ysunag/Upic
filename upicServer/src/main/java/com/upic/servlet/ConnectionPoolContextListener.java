@@ -30,11 +30,11 @@ public class ConnectionPoolContextListener implements ServletContextListener {
     config.addDataSourceProperty("useSSL", "false");
 
 
-    config.setMaximumPoolSize(5);
+    config.setMaximumPoolSize(300);
 
     config.setMinimumIdle(5);
 
-    config.setConnectionTimeout(10000); // 10 seconds
+    config.setConnectionTimeout(60000); // 60 seconds
 
     config.setIdleTimeout(600000); // 10 minutes
 
